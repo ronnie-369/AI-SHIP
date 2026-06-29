@@ -1,0 +1,37 @@
+# macOS
+.DS_Store
+
+# Research / brand guide build artefacts (not part of the live site)
+_audit/
+_audit2/
+_preview/
+_v2preview/
+_f/
+AISHIP.zip
+*.avif
+*.webp
+build_brand_guide.py
+build_brand_guide_v2.py
+AiShip_Brand_Guide_v1.0.pdf
+AiShip_Brand_Guide_v2.0.pdf
+AiShip_BrandGuide_Inspiration_Shortlist.html
+AiShip_Landing_Page_v1.html
+AiShip_Positioning_and_Web_Inspiration_2026.html
+
+# Raw / unrenamed source files (the renamed copies live in /pexels/ and /founders/)
+1671690333384.jpeg
+1777921842552.jpeg
+1777921844019.jpeg
+WhatsApp Image*
+7.jpg
+15.jpg
+4._Georgian*
+15314656167*
+SaveClip.App*
+db41caff*
+traffic-lights*
+pexels-*.jpg
+pexels-*.jpeg
+*.HEIC
+F44E1A35-*.JPG
+alex-shuper-*

@@ -1,0 +1,2635 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI/SHIP — Ship a real business in 7 days. Built with AI. Built by you.</title>
+<meta name="description" content="AI/SHIP is India's 7-day sprint that takes youth aged 12 to 30 from idea to live ecommerce store to first paying customer. Reserve a seat for Batch 04.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans+Devanagari:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1A1A1A;
+    --ink-soft: #3A3A3A;
+    --paper: #FFFFFF;
+    --cream: #FBF7F0;
+    --cream-2: #F5EFE3;
+    --coral: #F08597;
+    --coral-soft: #FCE3E8;
+    --coral-deep: #D86177;
+    --orange: #F89A4D;
+    --orange-soft: #FDE6CE;
+    --orange-deep: #E07D2A;
+    --sun: #FFBA25;
+    --sun-soft: #FFEDB8;
+    --rule: #ECE5D6;
+    --rule-soft: #F2EDE0;
+    --muted: #7A7468;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    color: var(--ink);
+    background: var(--paper);
+    line-height: 1.45;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  .mono { font-family: 'JetBrains Mono', monospace; }
+  .deva { font-family: 'Noto Sans Devanagari', sans-serif; }
+  img, svg { max-width: 100%; display: block; }
+
+  /* ===== CATALOG HEADER BAR ===== */
+  .runner {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 9px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--rule);
+  }
+  .runner-l, .runner-r { display: flex; gap: 18px; align-items: center; }
+  .runner .pulse { width: 8px; height: 8px; background: var(--coral); border-radius: 50%; animation: pulse 1.4s ease-in-out infinite; }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.7); }
+  }
+  .runner .cta-mini {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 5px 12px;
+    text-decoration: none;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+  }
+  .runner .cta-mini:hover { background: var(--coral-deep); }
+
+  /* ===== MAIN NAV ===== */
+  nav.main {
+    background: var(--paper);
+    border-bottom: 1px solid var(--rule);
+    position: sticky;
+    top: 31px;
+    z-index: 90;
+  }
+  .nav-inner {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 16px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .wordmark {
+    font-family: 'Inter', sans-serif;
+    font-weight: 900;
+    font-size: 28px;
+    letter-spacing: -0.5px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+  }
+  .wordmark .ai { color: var(--orange); }
+  .wordmark .sl { color: var(--ink); padding: 0 1px; }
+  .wordmark .ship { color: var(--coral); }
+  .nav-links { display: flex; gap: 28px; }
+  .nav-links a {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+    font-weight: 500;
+    padding: 6px 0;
+    border-bottom: 2px solid transparent;
+  }
+  .nav-links a:hover { border-bottom-color: var(--coral); }
+  .nav-cta {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 12px 20px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1px solid var(--ink);
+  }
+  .nav-cta:hover { background: var(--coral-deep); border-color: var(--coral-deep); }
+
+  /* ===== HERO ===== */
+  .hero {
+    background: var(--paper);
+    padding: 56px 32px 80px;
+    border-bottom: 1px solid var(--rule);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-inner {
+    max-width: 1320px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 56px;
+    align-items: start;
+  }
+  .chapter-mark {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .chapter-mark .n { color: var(--ink); }
+  .chapter-mark .t { color: var(--coral); }
+  .chapter-mark .rule { flex: 1; height: 1px; background: var(--ink); max-width: 140px; }
+
+  .wordmark-hero {
+    font-family: 'Inter', sans-serif;
+    font-weight: 900;
+    font-size: clamp(80px, 14vw, 200px);
+    line-height: 0.85;
+    letter-spacing: -4px;
+    margin-bottom: 32px;
+  }
+  .wordmark-hero .ai { color: var(--orange); }
+  .wordmark-hero .sl { color: var(--ink); padding: 0 4px; }
+  .wordmark-hero .ship { color: var(--coral); }
+
+  .hero-h {
+    font-family: 'Inter', sans-serif;
+    font-weight: 900;
+    font-size: clamp(36px, 4.5vw, 60px);
+    line-height: 1;
+    letter-spacing: -1.5px;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    max-width: 880px;
+  }
+  .hero-h .pink { color: var(--coral); }
+  .hero-h .org { color: var(--orange); }
+  .hero-h .subsub {
+    display: block;
+    font-size: clamp(13px, 1.35vw, 18px);
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    margin-top: 16px;
+    line-height: 1.3;
+    color: var(--muted);
+  }
+  .hero-h .subsub .or { color: var(--coral-deep); }
+
+  .hero-sub {
+    font-size: 18px;
+    line-height: 1.5;
+    color: var(--ink);
+    margin-bottom: 32px;
+    max-width: 620px;
+  }
+  .hero-sub strong { font-weight: 700; }
+  .hero-sub .deva-line {
+    display: block;
+    margin-top: 12px;
+    font-family: 'Noto Sans Devanagari', sans-serif;
+    font-weight: 700;
+    color: var(--coral-deep);
+    font-size: 19px;
+  }
+  .hero-meta {
+    display: flex;
+    gap: 28px;
+    flex-wrap: wrap;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin-bottom: 36px;
+  }
+  .hero-meta span { display: inline-flex; align-items: center; gap: 8px; }
+  .hero-meta .dot { width: 8px; height: 8px; }
+  .hero-meta .dot.c { background: var(--coral); }
+  .hero-meta .dot.o { background: var(--orange); }
+  .hero-meta .dot.s { background: var(--sun); }
+
+  /* Lead Capture Card */
+  .lead-card {
+    background: var(--paper);
+    color: var(--ink);
+    padding: 32px 28px;
+    border: 1px solid var(--ink);
+    box-shadow: 6px 6px 0 var(--coral-soft);
+    position: relative;
+  }
+  .lead-card::before {
+    content: "RESERVE / BATCH 04";
+    position: absolute;
+    top: -10px;
+    left: 20px;
+    background: var(--ink);
+    color: var(--paper);
+    padding: 4px 12px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    font-weight: 700;
+  }
+  .lead-card .urgency {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--coral-deep);
+    margin-bottom: 8px;
+  }
+  .lead-card h3 {
+    font-weight: 900;
+    font-size: 26px;
+    line-height: 1;
+    letter-spacing: -0.5px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .lead-card .seats {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    color: var(--muted);
+    margin-bottom: 20px;
+  }
+  .lead-card .seats b { color: var(--ink); font-weight: 700; }
+  .lead-card label {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 4px;
+    margin-top: 14px;
+  }
+  .lead-card input, .lead-card select {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--rule);
+    color: var(--ink);
+    padding: 8px 0;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    outline: none;
+  }
+  .lead-card input:focus, .lead-card select:focus { border-bottom-color: var(--coral); }
+  .lead-card input::placeholder { color: var(--rule); }
+  .lead-card select option { color: var(--ink); }
+  .lead-card .row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .lead-card button {
+    width: 100%;
+    background: var(--ink);
+    color: var(--paper);
+    border: none;
+    padding: 16px;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 900;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    margin-top: 24px;
+  }
+  .lead-card button:hover { background: var(--coral-deep); }
+  .lead-card .fine {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.8px;
+    color: var(--muted);
+    margin-top: 12px;
+    line-height: 1.4;
+  }
+
+  /* Hero photo block — Pexels real photo of an Indian kid building */
+  .hero-photo {
+    margin-top: 32px;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border: 1px solid var(--ink);
+    position: relative;
+    background: var(--cream);
+  }
+  .hero-photo img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .hero-photo .caption {
+    position: absolute;
+    bottom: 14px; left: 14px;
+    background: var(--paper);
+    padding: 6px 12px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    border: 1px solid var(--ink);
+    font-weight: 700;
+  }
+  .hero-photo .caption b { color: var(--coral-deep); }
+  /* legacy mascot fallback (kept for graceful loading) */
+  .hero-mascot { display: none; }
+
+  /* ===== MASCOT BADGE SYSTEM — Socialtel-style iconicity ===== */
+  .badge {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+    line-height: 0;
+  }
+  .badge svg { width: 100%; height: 100%; display: block; object-fit: cover; }
+  /* Image overscales aggressively so the maroon disc fills the badge edge-to-edge,
+     pushing the Canva PNG's white halo / margins entirely outside the circular crop. */
+  .badge img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(1.55);
+    z-index: 2;
+  }
+  /* Sizes (doubled from original spec) */
+  .badge-xs { width: 56px; height: 56px; }
+  .badge-sm { width: 80px; height: 80px; }
+  .badge-md { width: 128px; height: 128px; }
+  .badge-lg { width: 192px; height: 192px; }
+  .badge-xl { width: 320px; height: 320px; }
+  /* Disc backgrounds only show on SVG fallback. Real Canva pin badges have their own disc. */
+  .badge { background: transparent; }
+  /* Fallback colours appear ONLY when no <img> child is loaded (SVG fallback shows) */
+  .badge:has(svg:only-child).badge-coral,
+  .badge:not(:has(img)).badge-coral { background: var(--coral); }
+  .badge:has(svg:only-child).badge-orange,
+  .badge:not(:has(img)).badge-orange { background: var(--orange); }
+  .badge:has(svg:only-child).badge-sun,
+  .badge:not(:has(img)).badge-sun { background: var(--sun); }
+  .badge:has(svg:only-child).badge-cream,
+  .badge:not(:has(img)).badge-cream { background: var(--cream); border: 1px solid var(--ink); }
+  .badge:has(svg:only-child).badge-ink,
+  .badge:not(:has(img)).badge-ink { background: var(--ink); }
+  /* When the Canva pin loads, it has its own maroon disc — we just frame it */
+  .badge img { background: transparent; }
+  /* Sticker treatment — for hero stamp, kid-built stamps */
+  .badge-sticker {
+    box-shadow: 3px 3px 0 rgba(0,0,0,0.10);
+    border: 3px solid var(--paper);
+  }
+  /* Hero photo corner sticker */
+  .hero-sticker {
+    position: absolute;
+    top: -28px;
+    right: -28px;
+    z-index: 10;
+    transform: rotate(-8deg);
+  }
+  /* Nav badge */
+  .nav-badge { margin-right: 12px; }
+  /* Chapter opener — stacks ch-num + badge */
+  .ch-col {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    align-items: flex-start;
+  }
+  /* Footer signature badge */
+  .foot-mascot-stamp {
+    margin-top: 16px;
+    transform: rotate(-4deg);
+  }
+  /* Built-by-one-of-us stamp on kid cards */
+  .builtbyus-stamp {
+    position: absolute;
+    top: -36px;
+    right: -20px;
+    z-index: 10;
+    transform: rotate(8deg);
+  }
+  /* Founder card role badge */
+  .founder-role-badge {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    z-index: 10;
+    transform: rotate(6deg);
+  }
+  /* 7-day spine — typographic numbers, no badges */
+  .spine-row .sp-num {
+    font-weight: 700;
+    font-size: 56px;
+    line-height: 0.95;
+    letter-spacing: -2px;
+    text-align: right;
+    color: var(--coral-deep);
+  }
+
+  /* ===== SCATTERED MASCOTS — Socialtel-style peekers ===== */
+  .peeker {
+    position: absolute;
+    pointer-events: none;
+    z-index: 3;
+  }
+  .peeker svg { width: 100%; height: 100%; display: block; }
+  .peeker.flip svg { transform: scaleX(-1); }
+  .peeker img { width: 100%; height: 100%; object-fit: contain; }
+
+  /* Specific placements */
+  .peeker-hero-rb { right: -10px; bottom: -30px; width: 140px; height: 160px; opacity: 0.95; z-index: 1; }
+  .peeker-spine-end { right: 24px; top: -30px; width: 90px; height: 110px; }
+  .peeker-founders-tl { left: -30px; top: -40px; width: 100px; height: 120px; transform: rotate(-8deg); }
+  .peeker-founders-br { right: -20px; bottom: -30px; width: 120px; height: 140px; transform: rotate(6deg); }
+  .peeker-price-corner { right: -10px; top: -30px; width: 90px; height: 110px; transform: rotate(8deg); }
+  .peeker-method-divider { left: 50%; top: -28px; transform: translateX(-50%); width: 70px; height: 70px; background: var(--paper); border: 1px solid var(--ink); border-radius: 50%; padding: 8px; }
+  .peeker-letter-tr { right: 24px; top: 24px; width: 90px; height: 90px; transform: rotate(8deg); }
+
+  /* Inline stamp accent — used near headlines */
+  .mascot-stamp {
+    display: inline-block;
+    vertical-align: middle;
+    width: 56px; height: 56px;
+    margin: 0 6px;
+    border: 1px solid var(--ink);
+    border-radius: 50%;
+    padding: 6px;
+    background: var(--cream);
+  }
+
+  /* Make some sections relative so peekers anchor inside them */
+  .truth, .stores-cream, .price-zone, #teachers, #parents, #catalog, .final {
+    position: relative;
+    overflow-x: clip;
+  }
+
+  /* Canva mascot drop-in pattern: PNG overlays SVG fallback when present */
+  .mascot-slot { position: relative; }
+  .mascot-slot .mascot-png {
+    position: absolute;
+    inset: 12px;
+    width: calc(100% - 24px);
+    height: calc(100% - 24px);
+    object-fit: contain;
+    z-index: 2;
+  }
+  .letter-photo img,
+  .letter-photo .mascot-png {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: 25% center !important;
+    z-index: 2;
+  }
+  .final-mascot-l .mascot-png, .final-mascot-r .mascot-png {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    z-index: 2;
+  }
+  .store-preview .mascot-png {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+  }
+  .store-preview .pdomain { z-index: 3; }
+
+  /* Color bars at bottom — slimmed from 10px to 4px */
+  .color-bars {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    height: 4px;
+  }
+  .color-bars div:nth-child(1) { background: var(--orange); }
+  .color-bars div:nth-child(2) { background: var(--coral); }
+  .color-bars div:nth-child(3) { background: var(--sun); }
+
+  /* ===== STAT INDEX ===== */
+  .stat-index {
+    background: var(--cream);
+    color: var(--ink);
+    padding: 72px 32px;
+  }
+  .stat-grid {
+    max-width: 1320px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border-top: 1px solid var(--ink);
+    border-bottom: 1px solid var(--ink);
+  }
+  .stat-cell {
+    padding: 36px 28px;
+    border-right: 1px solid var(--rule);
+    position: relative;
+  }
+  .stat-cell:last-child { border-right: none; }
+  .stat-cell .idx {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    color: var(--coral-deep);
+    margin-bottom: 20px;
+    font-weight: 700;
+  }
+  .stat-cell .num {
+    font-weight: 900;
+    font-size: 44px;
+    line-height: 1;
+    letter-spacing: -1.5px;
+    margin-bottom: 16px;
+    color: var(--ink);
+    text-transform: uppercase;
+  }
+  .stat-cell:nth-child(1) .num { color: var(--coral-deep); }
+  .stat-cell:nth-child(2) .num { color: var(--orange-deep); }
+  .stat-cell:nth-child(3) .num { color: var(--ink); }
+  .stat-cell:nth-child(4) .num { color: var(--coral-deep); }
+  .stat-cell .num span { color: var(--coral); }
+  .stat-cell .lbl {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    line-height: 1.5;
+    color: var(--muted);
+  }
+
+  /* ===== SECTION ===== */
+  section.chapter {
+    padding: 96px 32px;
+    border-top: 1px solid var(--rule);
+  }
+  .container {
+    max-width: 1320px;
+    margin: 0 auto;
+  }
+  .ch-head {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 56px;
+    margin-bottom: 72px;
+    align-items: start;
+  }
+  .ch-num.org { color: var(--coral); }
+  .ch-num.sun { color: var(--coral); }
+  .ch-mini {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    color: var(--ink);
+  }
+  .ch-mini b { color: var(--coral); font-weight: 700; }
+  h2.ch-title {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: clamp(34px, 4.6vw, 60px);
+    line-height: 1.05;
+    letter-spacing: -1.4px;
+    text-transform: none;
+    max-width: 960px;
+    color: var(--ink);
+  }
+  h2.ch-title .pk { color: var(--coral); font-weight: 600; }
+  h2.ch-title .or { color: var(--coral-deep); font-weight: 600; }
+  h2.ch-title em {
+    font-style: normal;
+    color: var(--coral);
+    font-weight: 600;
+  }
+  h2.ch-title .aside {
+    display: block;
+    margin-top: 20px;
+    font-size: 0.42em;
+    font-weight: 400;
+    color: var(--muted);
+    line-height: 1.45;
+    letter-spacing: -0.2px;
+    white-space: nowrap;
+    max-width: none;
+  }
+  @media (max-width: 760px) {
+    h2.ch-title .aside { white-space: normal; font-size: 0.5em; }
+  }
+  .ch-deck {
+    font-size: 18px;
+    line-height: 1.55;
+    max-width: 680px;
+    margin-top: 24px;
+    color: var(--muted);
+    font-weight: 400;
+  }
+  .ch-num {
+    font-weight: 700;
+    font-size: 56px;
+    line-height: 0.95;
+    letter-spacing: -1.5px;
+    color: var(--coral);
+    font-family: 'Inter', sans-serif;
+  }
+
+  /* ===== CHAPTER 01: THE TRUTH (was dark, now light editorial) ===== */
+  .truth {
+    background: var(--paper);
+    color: var(--ink);
+    padding: 120px 32px;
+    border-top: 1px solid var(--rule);
+  }
+  .truth .ch-num { color: var(--coral); }
+  .truth .ch-mini { color: var(--ink); }
+  .truth .truth-h {
+    font-weight: 900;
+    font-size: clamp(48px, 7vw, 104px);
+    line-height: 0.95;
+    letter-spacing: -2.5px;
+    text-transform: uppercase;
+    margin-bottom: 48px;
+    max-width: 1100px;
+  }
+  .truth .truth-h .pk { color: var(--coral); }
+  .truth .truth-h .or { color: var(--orange); }
+  .truth .truth-foot {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    border-top: 1px solid var(--rule);
+    padding-top: 24px;
+    max-width: 600px;
+  }
+
+  /* ===== CHAPTER 02: THE CATALOG (the 7 days) ===== */
+  .catalog-spine {
+    border-top: 1px solid var(--ink);
+    border-bottom: 1px solid var(--ink);
+  }
+  .spine-row {
+    display: grid;
+    grid-template-columns: 100px 220px 1fr 280px 100px;
+    gap: 32px;
+    padding: 32px 0;
+    border-bottom: 1px solid var(--rule);
+    align-items: center;
+    transition: background 0.15s;
+  }
+  .spine-row:hover { background: var(--cream); }
+  .spine-row:last-child { border-bottom: none; }
+  .spine-row .sp-day {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--coral);
+    font-weight: 700;
+  }
+  .spine-row .sp-title {
+    font-weight: 900;
+    font-size: 28px;
+    line-height: 1;
+    letter-spacing: -0.8px;
+    text-transform: uppercase;
+  }
+  .spine-row .sp-desc {
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--muted);
+  }
+  .spine-row .sp-out {
+    background: var(--cream);
+    padding: 14px 18px;
+    border-left: 2px solid var(--coral);
+  }
+  .spine-row .sp-out .lbl {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--coral-deep);
+    margin-bottom: 4px;
+  }
+  .spine-row .sp-out .val {
+    font-weight: 700;
+    font-size: 13px;
+    line-height: 1.3;
+  }
+  .spine-row .sp-num {
+    font-weight: 900;
+    font-size: 72px;
+    line-height: 0.85;
+    letter-spacing: -2px;
+    text-align: right;
+  }
+  .spine-row:nth-child(7n+1) .sp-num { color: var(--coral); }
+  .spine-row:nth-child(7n+2) .sp-num { color: var(--orange); }
+  .spine-row:nth-child(7n+3) .sp-num { color: var(--sun); }
+  .spine-row:nth-child(7n+4) .sp-num { color: var(--coral); }
+  .spine-row:nth-child(7n+5) .sp-num { color: var(--orange); }
+  .spine-row:nth-child(7n+6) .sp-num { color: var(--sun); }
+  .spine-row:nth-child(7n+7) .sp-num { color: var(--ink); }
+
+  /* ===== CHAPTER 03: CATALOG OF SITES — Pentagram register ===== */
+  /* Lots of air. Hairline rules. Restrained type weight. No pills, no shouting. */
+  .stores-cream {
+    background: var(--paper);
+    padding: 140px 32px;
+    border-top: 1px solid var(--rule);
+  }
+  .stores-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 72px 56px;
+    border: none;
+    background: transparent;
+    margin-top: 24px;
+  }
+  .store-card {
+    background: transparent;
+    padding: 0;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: var(--ink);
+    transition: opacity 0.15s;
+    position: relative;
+  }
+  .store-card:hover { transform: none; background: transparent; opacity: 0.78; }
+  .store-card:hover h4 { color: var(--coral-deep); }
+
+  /* Preview: a quiet framed image. No heavy black grid. */
+  .store-preview {
+    aspect-ratio: 4/3;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--rule);
+    background: var(--cream);
+  }
+  .store-preview .pdomain {
+    background: rgba(255,255,255,0.92);
+    padding: 4px 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    color: var(--ink);
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    border: none;
+    text-transform: lowercase;
+    z-index: 4;
+  }
+  .store-preview .glyph {
+    width: 45%;
+    height: 45%;
+    opacity: 0.5;
+  }
+  /* All previews quiet cream — colour now lives in the screenshots themselves */
+  .sp-pink, .sp-orange, .sp-sun, .sp-cream, .sp-ink { background: var(--cream); }
+
+  .store-meta {
+    padding: 24px 0 0;
+    border-top: none;
+  }
+  .store-meta .midx {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1.2px;
+    color: var(--muted);
+    margin-bottom: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+  .store-meta h4 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 1.15;
+    letter-spacing: -0.4px;
+    text-transform: none;
+    margin-bottom: 10px;
+    color: var(--ink);
+    transition: color 0.15s;
+  }
+  .store-meta .who {
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.55;
+    margin-bottom: 16px;
+    font-weight: 400;
+  }
+  .store-meta .who b {
+    color: var(--ink);
+    font-weight: 600;
+  }
+  .store-meta .stats-line {
+    display: flex;
+    gap: 0;
+    flex-wrap: wrap;
+    align-items: baseline;
+  }
+  /* Pills become inline dotted meta — Pentagram-style. */
+  .pill {
+    background: transparent;
+    border: none;
+    padding: 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 1.2px;
+    color: var(--muted);
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+  .pill:not(:last-child)::after {
+    content: " · ";
+    margin: 0 6px;
+    color: var(--rule);
+  }
+  .pill.live { color: var(--coral-deep); font-weight: 700; }
+  .pill.gmv { color: var(--ink); font-weight: 600; }
+
+  /* Kid-built — actual mascot badge stamp on the card */
+  .store-card.kid-built { position: relative; }
+  .store-card.kid-built .store-preview { border-color: var(--coral); }
+  .store-card.kid-built .builtbyus-stamp {
+    position: absolute;
+    top: -24px;
+    right: -16px;
+    z-index: 10;
+    transform: rotate(8deg);
+    width: 92px;
+    height: 92px;
+  }
+
+  /* ===== CHAPTER 04: THE METHOD ===== */
+  .method-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border: 1px solid var(--ink);
+  }
+  .method-cell {
+    padding: 40px 32px;
+    border-right: 1px solid var(--rule);
+    position: relative;
+    background: var(--paper);
+  }
+  .method-cell:last-child { border-right: none; }
+  .method-cell .midx {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--coral-deep);
+    margin-bottom: 18px;
+    font-weight: 700;
+  }
+  .method-cell .mascot-slot {
+    width: 100%;
+    height: 180px;
+    background: var(--cream);
+    border: 1px solid var(--rule);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px;
+  }
+  .method-cell:nth-child(1) .mascot-slot { background: var(--coral-soft); border-color: var(--coral); }
+  .method-cell:nth-child(2) .mascot-slot { background: var(--orange-soft); border-color: var(--orange); }
+  .method-cell:nth-child(3) .mascot-slot { background: var(--sun-soft); border-color: var(--sun); }
+  .method-cell h3 {
+    font-weight: 900;
+    font-size: 28px;
+    line-height: 1;
+    letter-spacing: -0.8px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .method-cell p {
+    font-size: 15px;
+    line-height: 1.55;
+    color: var(--ink);
+  }
+
+  /* ===== CHAPTER 05: PROOF MATRIX ===== */
+  .matrix {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    align-items: start;
+  }
+  .matrix-bars {
+    background: var(--paper);
+    border: 1px solid var(--ink);
+    padding: 32px;
+  }
+  .matrix-bars h4 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--coral);
+    margin-bottom: 18px;
+    font-weight: 700;
+  }
+  .matrix-bars .bar-title {
+    font-weight: 900;
+    font-size: 22px;
+    text-transform: uppercase;
+    letter-spacing: -0.5px;
+    margin-bottom: 28px;
+  }
+  .bar-row {
+    margin-bottom: 18px;
+  }
+  .bar-row .bl {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    color: var(--ink);
+  }
+  .bar-row .bl b { font-weight: 700; }
+  .bar-track {
+    height: 16px;
+    background: var(--cream);
+    border: 1px solid var(--rule);
+    position: relative;
+    overflow: hidden;
+  }
+  .bar-fill {
+    height: 100%;
+    transition: width 1.2s ease;
+  }
+  .bar-fill.c { background: var(--coral); }
+  .bar-fill.o { background: var(--orange); }
+  .bar-fill.s { background: var(--sun); }
+
+  .matrix-quote {
+    background: var(--paper);
+    color: var(--ink);
+    padding: 40px;
+    border: 1px solid var(--ink);
+    border-left: 4px solid var(--coral);
+    position: relative;
+  }
+  .matrix-quote::before {
+    content: "''";
+    position: absolute;
+    top: 8px;
+    left: 24px;
+    font-weight: 900;
+    font-size: 100px;
+    line-height: 1;
+    color: var(--coral-soft);
+  }
+  .matrix-quote .q {
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 1.3;
+    margin-bottom: 24px;
+    position: relative;
+    z-index: 1;
+  }
+  .matrix-quote .qa {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--coral-deep);
+    border-top: 1px solid var(--rule);
+    padding-top: 16px;
+  }
+  .matrix-bars .bar-track {
+    background: var(--cream);
+    border: 1px solid var(--rule);
+  }
+
+  /* ===== CHAPTER 05: FOUNDERS GRID ===== */
+  .founders {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    margin-bottom: 48px;
+  }
+  .founder {
+    background: var(--paper);
+    border: 1px solid var(--ink);
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: 24px;
+    padding: 24px;
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+  .founder:hover {
+    transform: translateY(-2px);
+    box-shadow: 6px 6px 0 var(--coral-soft);
+  }
+  .founder-photo {
+    aspect-ratio: 3/4;
+    border: 1px solid var(--rule);
+    position: relative;
+    overflow: hidden;
+    background: var(--cream);
+  }
+  .founder-photo img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+  }
+  .founder-photo svg {
+    width: 100%; height: 100%;
+    display: block;
+  }
+  .founder-meta {
+    display: flex;
+    flex-direction: column;
+  }
+  .founder-name {
+    font-weight: 900;
+    font-size: 22px;
+    line-height: 1;
+    letter-spacing: -0.5px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .founder-role {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--coral-deep);
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+  .founder-tags {
+    margin-bottom: 14px;
+  }
+  .founder-tags span {
+    display: inline-block;
+    background: var(--sun-soft);
+    color: var(--ink);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 4px 8px;
+    font-weight: 700;
+    border: 1px solid var(--sun);
+  }
+  .founder-bio {
+    font-size: 14.5px;
+    line-height: 1.5;
+    color: var(--ink);
+  }
+  .teachers-foot {
+    background: var(--paper);
+    border: 1px solid var(--ink);
+    border-left: 4px solid var(--coral);
+    padding: 32px 36px;
+    max-width: 880px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .teachers-foot .tf-quote {
+    font-weight: 800;
+    font-size: 26px;
+    line-height: 1.25;
+    letter-spacing: -0.5px;
+    margin-bottom: 16px;
+  }
+  .teachers-foot .tf-attrib {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--coral-deep);
+    font-weight: 700;
+  }
+
+  /* ===== CHAPTER 06: FOUNDER LETTER ===== */
+  .letter-block {
+    background: var(--cream);
+    padding: 64px;
+    border: 1px solid var(--ink);
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 56px;
+    align-items: start;
+  }
+  .letter-photo {
+    aspect-ratio: 3/4;
+    background: var(--coral-soft);
+    border: 1px solid var(--ink);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .letter-photo .ploc {
+    position: absolute;
+    bottom: 14px; left: 14px;
+    background: var(--paper);
+    padding: 6px 10px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    border: 1px solid var(--ink);
+    text-transform: uppercase;
+    z-index: 5;
+  }
+  .letter-body h3 {
+    font-weight: 900;
+    font-size: 40px;
+    line-height: 1;
+    letter-spacing: -1px;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    max-width: 720px;
+  }
+  .letter-body h3 .pk { color: var(--coral); }
+  .letter-body p {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 16px;
+    max-width: 720px;
+  }
+  .letter-body p strong { font-weight: 700; }
+  .letter-body .sig {
+    margin-top: 24px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--ink);
+    border-top: 1.5px solid var(--ink);
+    padding-top: 16px;
+  }
+  .letter-body .sig b { color: var(--coral-deep); font-weight: 700; }
+
+  /* ===== CHAPTER 07: PRICING (was dark, now cream editorial) ===== */
+  .price-zone {
+    background: var(--cream);
+    color: var(--ink);
+    padding: 120px 32px;
+  }
+  .price-zone .ch-mini { color: var(--ink); }
+  .price-zone .ch-num { color: var(--coral); }
+  .price-zone h2.ch-title { color: var(--ink); }
+  .price-zone h2.ch-title .pk { color: var(--coral); }
+  .price-zone h2.ch-title .or { color: var(--orange); }
+  .price-zone .ch-deck { color: var(--ink); }
+  .price-card {
+    background: var(--paper);
+    color: var(--ink);
+    padding: 56px 48px;
+    max-width: 800px;
+    margin: 0 auto;
+    border: 1px solid var(--ink);
+    box-shadow: 8px 8px 0 var(--coral-soft);
+    position: relative;
+  }
+  .price-card .ribbon {
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--ink);
+    color: var(--paper);
+    padding: 8px 20px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+  .price-card .badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--coral);
+    text-align: center;
+    margin-bottom: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+  .price-card h3 {
+    font-weight: 900;
+    font-size: 32px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: -0.8px;
+    margin-bottom: 24px;
+  }
+  .price-card .price {
+    text-align: center;
+    margin: 24px 0 12px;
+  }
+  .price-card .price .cur {
+    font-weight: 700;
+    font-size: 32px;
+    vertical-align: top;
+    color: var(--muted);
+    margin-right: 4px;
+    display: inline-block;
+    margin-top: 20px;
+  }
+  .price-card .price .amt {
+    font-weight: 900;
+    font-size: 120px;
+    letter-spacing: -4px;
+    line-height: 1;
+    color: var(--ink);
+  }
+  .price-card .price-sub {
+    text-align: center;
+    font-size: 14px;
+    color: var(--muted);
+    margin-bottom: 32px;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .includes {
+    list-style: none;
+    max-width: 540px;
+    margin: 0 auto 32px;
+  }
+  .includes li {
+    padding: 14px 0;
+    border-bottom: 1px solid var(--rule);
+    display: grid;
+    grid-template-columns: 24px 1fr;
+    gap: 16px;
+    font-size: 15px;
+    line-height: 1.4;
+    align-items: center;
+  }
+  .includes li::before {
+    content: "+";
+    font-weight: 900;
+    color: var(--coral);
+    font-size: 22px;
+  }
+  .price-card .pcta {
+    display: block;
+    background: var(--ink);
+    color: var(--paper);
+    padding: 20px;
+    text-align: center;
+    text-decoration: none;
+    font-weight: 900;
+    font-size: 15px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    border: 1px solid var(--ink);
+    margin-top: 24px;
+  }
+  .price-card .pcta:hover { background: var(--coral-deep); border-color: var(--coral-deep); }
+  .price-card .guarantee {
+    text-align: center;
+    margin-top: 20px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 1.2px;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+  .price-card .guarantee b { color: var(--coral-deep); }
+
+  /* ===== CHAPTER 08: FAQ ===== */
+  .faq-grid {
+    border-top: 2px solid var(--ink);
+  }
+  details.faq {
+    border-bottom: 1px solid var(--rule);
+    padding: 28px 0;
+  }
+  details.faq summary {
+    cursor: pointer;
+    list-style: none;
+    display: grid;
+    grid-template-columns: 60px 1fr 40px;
+    gap: 24px;
+    align-items: center;
+  }
+  details.faq summary::-webkit-details-marker { display: none; }
+  details.faq .fnum {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    color: var(--coral);
+    font-weight: 700;
+  }
+  details.faq .fq {
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 1.2;
+    letter-spacing: -0.3px;
+    text-transform: uppercase;
+  }
+  details.faq .fmark {
+    font-weight: 900;
+    font-size: 32px;
+    color: var(--coral);
+    text-align: right;
+    transition: transform 0.2s;
+  }
+  details.faq[open] .fmark { transform: rotate(45deg); }
+  details.faq .fa {
+    margin-top: 20px;
+    margin-left: 84px;
+    max-width: 880px;
+  }
+  details.faq .myth {
+    background: var(--cream);
+    border-left: 3px solid var(--coral);
+    padding: 16px 22px;
+    margin-bottom: 16px;
+    font-style: italic;
+    font-size: 15px;
+    line-height: 1.5;
+  }
+  details.faq .truth {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  /* ===== FINAL CTA (was full coral, now paper with coral underscore) ===== */
+  .final {
+    background: var(--paper);
+    color: var(--ink);
+    padding: 140px 32px;
+    text-align: center;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    position: relative;
+    overflow: hidden;
+  }
+  .final h2 {
+    font-weight: 900;
+    font-size: clamp(48px, 7vw, 104px);
+    line-height: 0.95;
+    letter-spacing: -2.5px;
+    text-transform: uppercase;
+    margin-bottom: 32px;
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    z-index: 2;
+  }
+  .final h2 .or { color: var(--coral); }
+  .final p {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--muted);
+    margin-bottom: 36px;
+    max-width: 640px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    z-index: 2;
+  }
+  .final .final-cta {
+    display: inline-block;
+    background: var(--ink);
+    color: var(--paper);
+    padding: 22px 48px;
+    text-decoration: none;
+    font-weight: 900;
+    font-size: 16px;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+    border: 1px solid var(--ink);
+    position: relative;
+    z-index: 2;
+  }
+  .final .final-cta:hover { background: var(--coral-deep); border-color: var(--coral-deep); }
+  .final .deva {
+    margin-top: 32px;
+    font-family: 'Noto Sans Devanagari', sans-serif;
+    font-weight: 900;
+    font-size: 24px;
+    color: var(--coral-deep);
+    position: relative;
+    z-index: 2;
+  }
+  .final-mascot-l, .final-mascot-r {
+    position: absolute;
+    bottom: 20px;
+    width: 180px;
+    height: 220px;
+    z-index: 1;
+    opacity: 1;
+  }
+  .final-mascot-l { left: 5%; transform: rotate(-6deg); }
+  .final-mascot-r { right: 5%; transform: rotate(6deg); }
+
+  /* ===== FOOTER ===== */
+  footer {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 64px 32px 32px;
+  }
+  .foot-grid {
+    max-width: 1320px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 48px;
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+    padding-bottom: 48px;
+    margin-bottom: 24px;
+  }
+  .foot-brand .wordmark { font-size: 40px; }
+  .foot-brand .wordmark .sl { color: var(--paper); }
+  .foot-brand p {
+    font-size: 15px;
+    line-height: 1.5;
+    margin-top: 16px;
+    opacity: 0.75;
+    max-width: 360px;
+  }
+  .foot-col h5 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--coral);
+    margin-bottom: 18px;
+    font-weight: 700;
+  }
+  .foot-col a {
+    display: block;
+    color: var(--paper);
+    text-decoration: none;
+    font-size: 14px;
+    padding: 6px 0;
+    opacity: 0.75;
+  }
+  .foot-col a:hover { opacity: 1; color: var(--coral); }
+  .foot-bottom {
+    max-width: 1320px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    opacity: 0.5;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  /* ===== STICKY MOBILE CTA ===== */
+  .sticky-mobile {
+    display: none;
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 1080px) {
+    .hero-inner { grid-template-columns: 1fr; }
+    .stat-grid { grid-template-columns: 1fr 1fr; }
+    .stat-cell { border-bottom: 1px solid rgba(255,255,255,0.15); }
+    .ch-head { grid-template-columns: 1fr; gap: 16px; }
+    .ch-num { font-size: 64px; }
+    .spine-row { grid-template-columns: 70px 1fr; gap: 16px; }
+    .spine-row .sp-desc, .spine-row .sp-out, .spine-row .sp-num { grid-column: 1 / -1; }
+    .stores-grid { grid-template-columns: 1fr 1fr; }
+    .store-card:nth-child(2n) { border-right: none; }
+    .store-card:nth-child(3n) { border-right: 1px solid var(--ink); }
+    .method-grid { grid-template-columns: 1fr; }
+    .method-cell { border-right: none; border-bottom: 1px solid var(--ink); }
+    .matrix { grid-template-columns: 1fr; }
+    .founders { grid-template-columns: 1fr; }
+    .founder { grid-template-columns: 120px 1fr; gap: 16px; padding: 20px; }
+    .letter-block { grid-template-columns: 1fr; padding: 32px; gap: 32px; }
+    .letter-photo { max-width: 240px; }
+    .foot-grid { grid-template-columns: 1fr 1fr; }
+    .nav-links { display: none; }
+    .runner-l span:nth-child(n+3) { display: none; }
+    details.faq .fa { margin-left: 0; }
+    .final-mascot-l, .final-mascot-r { width: 90px; height: 110px; bottom: 10px; opacity: 0.85; }
+    .peeker-hero-rb { width: 90px; height: 110px; }
+    .peeker-spine-end { width: 60px; height: 70px; right: 10px; top: -20px; }
+    .peeker-founders-br, .peeker-founders-tl { width: 70px; height: 90px; }
+    .peeker-price-corner { width: 60px; height: 70px; }
+    .sticky-mobile {
+      display: block;
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      background: var(--ink);
+      padding: 12px 16px;
+      z-index: 200;
+      border-top: 2px solid var(--coral);
+    }
+    .sticky-mobile a {
+      display: block;
+      background: var(--coral);
+      color: var(--ink);
+      text-align: center;
+      padding: 14px;
+      text-decoration: none;
+      font-weight: 900;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      font-size: 13px;
+    }
+  }
+  @media (max-width: 640px) {
+    .stores-grid { grid-template-columns: 1fr; }
+    .store-card { border-right: none; }
+    section.chapter, .truth, .price-zone, .stores-cream, .final { padding-left: 20px; padding-right: 20px; }
+    .nav-inner { padding: 14px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TOP CATALOG RUNNER -->
+<div class="runner">
+  <div class="runner-l">
+    <span><span class="pulse"></span> FIRST COHORT OPEN</span>
+    <span>MUMBAI + ONLINE</span>
+    <span>AGES 12 TO 30</span>
+  </div>
+  <div class="runner-r">
+    <span>PRESENTED BY CAPT. HTTPS</span>
+    <a href="#reserve" class="cta-mini">RESERVE SEAT</a>
+  </div>
+</div>
+
+<!-- MAIN NAV -->
+<nav class="main">
+  <div class="nav-inner">
+    <a href="#" class="wordmark" style="display:inline-flex;align-items:center;">
+      <span class="badge badge-sm badge-coral nav-badge">
+        <img src="canva_mascots/badge-curious.png" alt="Capt. HTTPS" onerror="this.remove()">
+      </span>
+      <span class="ai">AI</span><span class="sl">/</span><span class="ship">SHIP</span>
+    </a>
+    <div class="nav-links">
+      <a href="#truth">The Truth</a>
+      <a href="#catalog">The 7 Days</a>
+      <a href="#stores">What You Build</a>
+      <a href="#teachers">The Folk</a>
+      <a href="#parents">For Parents</a>
+      <a href="#price">Price</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <a href="#reserve" class="nav-cta">Reserve →</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="top">
+  <div class="hero-inner">
+    <div>
+      <div class="chapter-mark">
+        <span class="n">00</span>
+        <span class="t">/ HEY. YOU. READ THIS.</span>
+        <span class="rule"></span>
+        <span class="t" style="color:var(--coral-deep);">CAPT. HTTPS, AT THE HELM</span>
+      </div>
+
+      <div class="wordmark-hero">
+        <span class="ai">AI</span><span class="sl">/</span><span class="ship">SHIP</span>
+      </div>
+
+      <h1 class="hero-h">
+        Ship a real business <span class="pk">in seven days.</span>
+        <span class="subsub">Built with AI. <span class="or">Built by you.</span></span>
+      </h1>
+
+      <p class="hero-sub">
+        Why should adults have all the fun? Spend seven days with us, walk out with a real shop on the internet, a pack of new friends who build things, and the first rupee of your own money in your own bank account.
+        <strong>Not a course. Not a certificate. A real business that is yours to keep, and a club that has your back.</strong>
+        <span class="deva-line">सात दिन। एक असली दुकान। नए दोस्त। तुम्हारा क्लब।</span>
+      </p>
+
+      <div class="hero-meta">
+        <span><span class="dot c"></span>FIRST COHORT / 2026</span>
+        <span><span class="dot o"></span>MUMBAI + ONLINE</span>
+        <span><span class="dot s"></span>ENGLISH OR HINDI</span>
+      </div>
+
+      <!-- Hero photo: Pexels 15598845 by Sanket Mishra. Drop pexels/hero-kid.jpg to override. -->
+      <div class="hero-photo" style="position:relative;">
+        <img src="pexels/hero-kid.jpg" alt="A young builder at the laptop" onerror="this.src='https://images.pexels.com/photos/15598845/pexels-photo-15598845.jpeg?auto=compress&cs=tinysrgb&w=1600'; this.onerror=null;">
+        <!-- Hero sticker: large AI/SHIP mascot badge stuck on the corner -->
+        <span class="badge badge-xl badge-coral badge-sticker hero-sticker">
+          <img src="canva_mascots/badge-building.png" alt="Capt. HTTPS — at the helm" onerror="this.remove()">
+        </span>
+        <div class="caption">DAY 03 / <b>BUILDING THE SHOP</b> / SHOT BY CAPT. HTTPS</div>
+      </div>
+    </div>
+
+    <!-- HERO LEAD CAPTURE -->
+    <form class="lead-card" id="reserve" onsubmit="event.preventDefault(); alert('Thanks. We will call you on WhatsApp within 30 minutes.');">
+      <div class="urgency">FIRST COHORT / 2026</div>
+      <h3>RESERVE A SEAT</h3>
+      <div class="seats"><b>24 seats only.</b> We will WhatsApp you the dates.</div>
+
+      <label>STUDENT NAME</label>
+      <input required name="name" placeholder="Aarav Sharma" autocomplete="name">
+
+      <div class="row">
+        <div>
+          <label>AGE</label>
+          <select required name="age">
+            <option value="">Select</option>
+            <option>12 to 15</option>
+            <option>16 to 18</option>
+            <option>19 to 22</option>
+            <option>23 to 30</option>
+          </select>
+        </div>
+        <div>
+          <label>CITY</label>
+          <input required name="city" placeholder="Mumbai" autocomplete="address-level2">
+        </div>
+      </div>
+
+      <label>WHATSAPP NUMBER</label>
+      <input required name="phone" placeholder="+91 98XX XX XX XX" type="tel" autocomplete="tel">
+
+      <label>PARENT EMAIL (FOR INVOICE)</label>
+      <input required name="email" placeholder="parent@email.com" type="email" autocomplete="email">
+
+      <button type="submit">HOLD MY SEAT →</button>
+      <div class="fine">No payment yet. We call you on WhatsApp within 30 mins to walk you through the programme.</div>
+    </form>
+  </div>
+
+  <!-- Hero corner peeker (Socialtel-style): mascot poking up from the bottom-right of the photo block. Drop canva_mascots/peeker-confetti.png to override. -->
+  <div class="peeker peeker-hero-rb">
+    <img src="canva_mascots/peeker-confetti.png" alt="" onerror="this.remove()">
+    <svg viewBox="0 0 140 160" xmlns="http://www.w3.org/2000/svg">
+      <!-- Confetti popper kid peeking -->
+      <ellipse cx="70" cy="135" rx="42" ry="40" fill="#F08597" stroke="#1A1A1A" stroke-width="2.5"/>
+      <circle cx="70" cy="75" r="32" fill="#FBF7F0" stroke="#1A1A1A" stroke-width="2.5"/>
+      <path d="M48 55 Q60 38 70 42 Q80 38 92 55 L90 62 L50 62 Z" fill="#1A1A1A"/>
+      <circle cx="60" cy="78" r="3" fill="#1A1A1A"/>
+      <circle cx="80" cy="78" r="3" fill="#1A1A1A"/>
+      <ellipse cx="70" cy="92" rx="5" ry="6" fill="#1A1A1A"/>
+      <!-- Arms with popper -->
+      <path d="M40 110 Q22 90 30 60" stroke="#1A1A1A" stroke-width="6" fill="none" stroke-linecap="round"/>
+      <path d="M100 110 Q118 90 110 60" stroke="#1A1A1A" stroke-width="6" fill="none" stroke-linecap="round"/>
+      <!-- Confetti -->
+      <circle cx="20" cy="40" r="3.5" fill="#FFBA25"/>
+      <circle cx="120" cy="50" r="3.5" fill="#F89A4D"/>
+      <circle cx="14" cy="80" r="3" fill="#F89A4D"/>
+      <circle cx="128" cy="20" r="3" fill="#FFBA25"/>
+      <path d="M125 75 L130 70 L132 78 Z" fill="#F08597"/>
+      <path d="M12 30 L8 36 L16 36 Z" fill="#1A1A1A"/>
+    </svg>
+  </div>
+  <!-- Background mascot: drop canva_mascots/mascot-hero.png to override -->
+  <div class="hero-mascot">
+    <img class="mascot-png" src="canva_mascots/mascot-hero.png" alt="" onerror="this.remove()">
+    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="100" cy="100" r="80" fill="#F08597"/>
+      <rect x="60" y="80" width="80" height="60" fill="#0A0A0A"/>
+      <circle cx="80" cy="105" r="5" fill="#FFBA25"/>
+      <circle cx="120" cy="105" r="5" fill="#FFBA25"/>
+    </svg>
+  </div>
+</header>
+
+<div class="color-bars">
+  <div></div><div></div><div></div><div></div>
+</div>
+
+<!-- WHAT YOU WALK OUT WITH (replaces fake stats) -->
+<div class="stat-index">
+  <div class="container" style="max-width:1320px;margin:0 auto;">
+    <div class="ch-mini" style="margin-bottom: 28px;"><b style="color:var(--coral-deep);">WHAT YOU WALK OUT WITH</b> / FOUR REAL THINGS</div>
+  </div>
+  <div class="stat-grid">
+    <div class="stat-cell">
+      <div class="idx">01 / THE SHOP</div>
+      <div class="num">A SHOP</div>
+      <div class="lbl">A REAL ECOMMERCE STORE ON YOUR OWN DOMAIN. ON THE INTERNET. WITH YOUR NAME.</div>
+    </div>
+    <div class="stat-cell">
+      <div class="idx">02 / THE PACK</div>
+      <div class="num">FRIENDS</div>
+      <div class="lbl">A COHORT OF BUILDERS YOUR OWN AGE WHO SHIPPED THEIR THING THE SAME WEEK YOU DID.</div>
+    </div>
+    <div class="stat-cell">
+      <div class="idx">03 / THE CLUB</div>
+      <div class="num">A CLUB</div>
+      <div class="lbl">LIFETIME ACCESS TO THE AI/SHIP BUILDERS CLUB. ALUMNI, MENTORS, NEXT COHORTS.</div>
+    </div>
+    <div class="stat-cell">
+      <div class="idx">04 / THE RUPEE</div>
+      <div class="num">YOUR ₹</div>
+      <div class="lbl">THE FIRST RUPEE OF YOUR OWN MONEY, EARNED FROM SOMEONE WHO BOUGHT YOUR THING.</div>
+    </div>
+  </div>
+</div>
+
+<!-- CHAPTER 01: THE TRUTH -->
+<section class="truth" id="truth">
+  <div class="container">
+    <div class="ch-mini"><b>01</b> / THE TRUTH</div>
+    <div class="truth-h">
+      THE OLD ANSWER WAS <span class="pk">STUDY HARD,<br>GET A DEGREE, GET A JOB.</span><br>
+      THE NEW ANSWER IS <span class="or">BUILD SOMETHING REAL,</span><br>
+      WITH AI AS YOUR TEAMMATE, IN SEVEN DAYS.<br>
+      THEN KEEP GOING.
+    </div>
+    <div class="truth-foot">
+      AI/SHIP'S REASON FOR EXISTING. READ THIS BEFORE EVERYTHING ELSE.
+    </div>
+  </div>
+</section>
+
+<!-- CHAPTER 02: THE CATALOG (7 days) -->
+<section class="chapter" id="catalog">
+  <div class="container">
+    <div class="ch-head">
+      <div class="ch-num">02</div>
+      <div>
+        <div class="ch-mini"><b>02</b> / THE WEEK / SEVEN DAYS, SEVEN WINS</div>
+        <h2 class="ch-title">Seven days. <em>Seven wins.</em><br>Every hour ends up in <em>your shop</em>.</h2>
+        <p class="ch-deck">Every day finishes with something you can show your best friend, your nani, or a customer. No exam pressure. No grades. Just stuff you made, in public, with cool folk in the room.</p>
+      </div>
+    </div>
+
+    <div class="catalog-spine">
+      <div class="spine-row">
+        <div class="sp-day">MON / DAY 01</div>
+        <div class="sp-title">THE HUNT</div>
+        <div class="sp-desc">You arrive without a business. You leave with three product ideas, validated by ten real people on WhatsApp. AI does the research, you do the talking.</div>
+        <div class="sp-out">
+          <div class="lbl">YOU WALK OUT WITH</div>
+          <div class="val">3 validated product ideas + 10 logged customer conversations</div>
+        </div>
+        <div class="sp-num">01</div>
+      </div>
+
+      <div class="spine-row">
+        <div class="sp-day">TUE / DAY 02</div>
+        <div class="sp-title">THE PICK</div>
+        <div class="sp-desc">Pick one idea. Write your founder story in your own voice. Buy your domain. Open your business bank account if you have not already.</div>
+        <div class="sp-out">
+          <div class="lbl">YOU WALK OUT WITH</div>
+          <div class="val">Your domain name + a one-page founder story</div>
+        </div>
+        <div class="sp-num">02</div>
+      </div>
+
+      <div class="spine-row">
+        <div class="sp-day">WED / DAY 03</div>
+        <div class="sp-title">THE BUILD</div>
+        <div class="sp-desc">Open Lovable. Describe your store in plain English or Hindi. Watch the AI build it. You learn to direct, not to code. Your store goes live by sundown.</div>
+        <div class="sp-out">
+          <div class="lbl">YOU WALK OUT WITH</div>
+          <div class="val">A live ecommerce site on your own domain</div>
+        </div>
+        <div class="sp-num">03</div>
+      </div>
+
+      <div class="spine-row">
+        <div class="sp-day">THU / DAY 04</div>
+        <div class="sp-title">THE LOOK</div>
+        <div class="sp-desc">AI-generated product imagery if you do not have inventory yet. Real photography if you do. You learn hero shots, thumbnails, and copy that converts.</div>
+        <div class="sp-out">
+          <div class="lbl">YOU WALK OUT WITH</div>
+          <div class="val">A finished, photographed, copy-written storefront</div>
+        </div>
+        <div class="sp-num">04</div>
+      </div>
+
+      <div class="spine-row">
+        <div class="sp-day">FRI / DAY 05</div>
+        <div class="sp-title">THE PLUMBING</div>
+        <div class="sp-desc">Razorpay or Stripe. WhatsApp checkout. Shipping setup. The boring, unsexy, business-grade plumbing that turns a website into a real business.</div>
+        <div class="sp-out">
+          <div class="lbl">YOU WALK OUT WITH</div>
+          <div class="val">A working checkout that takes real money</div>
+        </div>
+        <div class="sp-num">05</div>
+      </div>
+
+      <div class="spine-row">
+        <div class="sp-day">SAT / DAY 06</div>
+        <div class="sp-title">THE LAUNCH</div>
+        <div class="sp-desc">One Instagram post. One WhatsApp broadcast. One in-person conversation. You learn what marketing actually is. Strangers do not appear. You go and find them.</div>
+        <div class="sp-out">
+          <div class="lbl">YOU WALK OUT WITH</div>
+          <div class="val">First 50 visitors + first 5 customer enquiries</div>
+        </div>
+        <div class="sp-num">06</div>
+      </div>
+
+      <div class="spine-row" style="position:relative;">
+        <!-- Peeker: kid celebrating at the finish line -->
+        <div class="peeker peeker-spine-end">
+          <img src="canva_mascots/peeker-finish.png" alt="" onerror="this.remove()">
+          <svg viewBox="0 0 90 110" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="45" cy="92" rx="32" ry="18" fill="#1A1A1A"/>
+            <circle cx="45" cy="50" r="26" fill="#FBF7F0" stroke="#1A1A1A" stroke-width="2.5"/>
+            <path d="M25 32 Q35 14 45 18 Q55 14 65 32" fill="#1A1A1A"/>
+            <path d="M34 50 Q40 45 46 50" stroke="#1A1A1A" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+            <path d="M50 50 Q56 45 62 50" stroke="#1A1A1A" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+            <path d="M34 62 Q45 70 56 62" stroke="#1A1A1A" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+            <!-- Waving flag arm -->
+            <path d="M15 80 Q-2 60 8 30" stroke="#1A1A1A" stroke-width="5" fill="none" stroke-linecap="round"/>
+            <rect x="3" y="14" width="22" height="14" fill="#F08597" stroke="#1A1A1A" stroke-width="2"/>
+            <line x1="8" y1="14" x2="8" y2="34" stroke="#1A1A1A" stroke-width="2"/>
+          </svg>
+        </div>
+        <div class="sp-day">SUN / DAY 07</div>
+        <div class="sp-title">THE FIRST CUSTOMER</div>
+        <div class="sp-desc">Most students close their first sale today. Either way, you finish with a working business, a customer list you can call by name, and a four-week growth plan.</div>
+        <div class="sp-out">
+          <div class="lbl">YOU WALK OUT WITH</div>
+          <div class="val">First paying customer + 4-week growth plan</div>
+        </div>
+        <div class="sp-num">07</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHAPTER 03: LIVE STORES CATALOG -->
+<section class="stores-cream" id="stores">
+  <div class="container">
+    <div class="ch-head">
+      <div class="ch-num org">03</div>
+      <div>
+        <div class="ch-mini"><b>03</b> / RECEIPTS / SITES WE HAVE ACTUALLY BUILT</div>
+        <h2 class="ch-title">Built by us. <em>Built by our kids.</em><br>Now it is <em>your turn</em>.</h2>
+        <p class="ch-deck">No fake students, no invented numbers. Six real sites we and our families have shipped on the internet, with links you can click right now. Two of them were built by 14-year-olds. Pay attention to those two.</p>
+      </div>
+    </div>
+
+    <div class="stores-grid">
+      <a href="https://www.buyblacktshirt.com" class="store-card kid-built" target="_blank" rel="noopener">
+        <div class="store-preview sp-pink">
+          <img class="mascot-png" src="stores/buyblacktshirt.png" alt="buyblacktshirt.com preview" loading="lazy" onerror="this.onerror=null; this.src='https://image.thum.io/get/width/1200/crop/900/noanimate/https://www.buyblacktshirt.com';">
+          <!-- T-shirt glyph for buyblacktshirt.com -->
+          <svg class="glyph" viewBox="0 0 100 100">
+            <path d="M28 30 L40 22 L60 22 L72 30 L80 38 L72 46 L65 42 L65 80 L35 80 L35 42 L28 46 L20 38 Z" fill="#1A1A1A" stroke="#1A1A1A" stroke-width="2"/>
+            <path d="M40 22 Q50 32 60 22" fill="none" stroke="#F08597" stroke-width="2.5"/>
+          </svg>
+          <div class="pdomain">buyblacktshirt.com</div>
+        </div>
+        <div class="store-meta">
+          <div class="midx">BUILT BY A 14-YEAR-OLD</div>
+          <h4>BUYBLACKTSHIRT.COM</h4>
+          <div class="who">By <b>Veer Uppal</b>, age 14. The kid-built one. Read that twice.</div>
+          <div class="stats-line">
+            <span class="pill live">● LIVE</span>
+            <span class="pill">APPAREL</span>
+            <span class="pill gmv">AGE 14</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="https://www.lifaafa.com" class="store-card kid-built" target="_blank" rel="noopener">
+        <div class="store-preview sp-orange">
+          <img class="mascot-png" src="stores/lifaafa.png" alt="lifaafa.com preview" loading="lazy" onerror="this.onerror=null; this.src='https://image.thum.io/get/width/1200/crop/900/noanimate/https://www.lifaafa.com';">
+          <!-- Envelope glyph (lifaafa = envelope in Hindi) -->
+          <svg class="glyph" viewBox="0 0 100 100">
+            <rect x="15" y="32" width="70" height="44" fill="#FBF7F0" stroke="#1A1A1A" stroke-width="2.5"/>
+            <path d="M15 32 L50 58 L85 32" fill="none" stroke="#1A1A1A" stroke-width="2.5"/>
+            <path d="M15 76 L40 54" stroke="#1A1A1A" stroke-width="2"/>
+            <path d="M85 76 L60 54" stroke="#1A1A1A" stroke-width="2"/>
+            <circle cx="78" cy="42" r="6" fill="#F08597" stroke="#1A1A1A" stroke-width="2"/>
+          </svg>
+          <div class="pdomain">lifaafa.com</div>
+        </div>
+        <div class="store-meta">
+          <div class="midx">BUILT BY A 14-YEAR-OLD</div>
+          <h4>LIFAAFA.COM</h4>
+          <div class="who">By <b>Damian Melvin Jacob</b>, age 14. Yes, also 14. We told you to pay attention.</div>
+          <div class="stats-line">
+            <span class="pill live">● LIVE</span>
+            <span class="pill">GIFTING</span>
+            <span class="pill gmv">AGE 14</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="https://www.bombaybreed.com" class="store-card" target="_blank" rel="noopener">
+        <div class="store-preview sp-sun">
+          <img class="mascot-png" src="stores/bombaybreed.png" alt="bombaybreed.com preview" loading="lazy" onerror="this.onerror=null; this.src='https://image.thum.io/get/width/1200/crop/900/noanimate/https://www.bombaybreed.com';">
+          <!-- BB monogram glyph -->
+          <svg class="glyph" viewBox="0 0 100 100">
+            <rect x="14" y="20" width="72" height="60" fill="#1A1A1A"/>
+            <text x="50" y="62" font-family="Inter" font-size="42" font-weight="900" fill="#FBF7F0" text-anchor="middle" letter-spacing="-3">BB</text>
+            <circle cx="22" cy="28" r="3" fill="#F08597"/>
+          </svg>
+          <div class="pdomain">bombaybreed.com</div>
+        </div>
+        <div class="store-meta">
+          <div class="midx">BUILT BY THE FOUNDER</div>
+          <h4>BOMBAYBREED.COM</h4>
+          <div class="who">By <b>Theresa Ronnie</b>. The parent brand. Where AI/SHIP lives.</div>
+          <div class="stats-line">
+            <span class="pill live">● LIVE</span>
+            <span class="pill">BRAND HOUSE</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="https://www.evolutionaryhabits.com" class="store-card" target="_blank" rel="noopener">
+        <div class="store-preview sp-cream">
+          <img class="mascot-png" src="stores/evolutionaryhabits.png" alt="evolutionaryhabits.com preview" loading="lazy" onerror="this.onerror=null; this.src='https://image.thum.io/get/width/1200/crop/900/noanimate/https://www.evolutionaryhabits.com';">
+          <!-- Spiral growth glyph -->
+          <svg class="glyph" viewBox="0 0 100 100">
+            <path d="M50 50 Q60 50 60 40 Q60 25 45 25 Q22 25 22 50 Q22 80 55 80 Q88 80 88 47" stroke="#F89A4D" stroke-width="4" fill="none" stroke-linecap="round"/>
+            <circle cx="50" cy="50" r="6" fill="#1A1A1A"/>
+          </svg>
+          <div class="pdomain">evolutionaryhabits.com</div>
+        </div>
+        <div class="store-meta">
+          <div class="midx">CO-BUILT BY THE TEAM</div>
+          <h4>EVOLUTIONARY HABITS</h4>
+          <div class="who">By <b>Theresa, Sachin and Sandeep</b>. A growth consortium for organisations being rewritten by AI.</div>
+          <div class="stats-line">
+            <span class="pill live">● LIVE</span>
+            <span class="pill">CONSORTIUM</span>
+            <span class="pill">B2B</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="https://www.nexocircle.app" class="store-card" target="_blank" rel="noopener">
+        <div class="store-preview sp-ink">
+          <img class="mascot-png" src="stores/nexocircle.png" alt="nexocircle.app preview" loading="lazy" onerror="this.onerror=null; this.src='https://image.thum.io/get/width/1200/crop/900/noanimate/https://www.nexocircle.app';">
+          <!-- Connected nodes glyph -->
+          <svg class="glyph" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="14" fill="#F08597" stroke="#1A1A1A" stroke-width="2"/>
+            <circle cx="22" cy="28" r="8" fill="#FFBA25" stroke="#1A1A1A" stroke-width="2"/>
+            <circle cx="78" cy="28" r="8" fill="#F89A4D" stroke="#1A1A1A" stroke-width="2"/>
+            <circle cx="22" cy="72" r="8" fill="#F89A4D" stroke="#1A1A1A" stroke-width="2"/>
+            <circle cx="78" cy="72" r="8" fill="#FFBA25" stroke="#1A1A1A" stroke-width="2"/>
+            <line x1="22" y1="28" x2="50" y2="50" stroke="#1A1A1A" stroke-width="2"/>
+            <line x1="78" y1="28" x2="50" y2="50" stroke="#1A1A1A" stroke-width="2"/>
+            <line x1="22" y1="72" x2="50" y2="50" stroke="#1A1A1A" stroke-width="2"/>
+            <line x1="78" y1="72" x2="50" y2="50" stroke="#1A1A1A" stroke-width="2"/>
+          </svg>
+          <div class="pdomain">nexocircle.app</div>
+        </div>
+        <div class="store-meta">
+          <div class="midx">BUILT BY THE FOUNDER</div>
+          <h4>NEXOCIRCLE.APP</h4>
+          <div class="who">By <b>Sachin Uppal</b>. The Relationship OS. 16 AI agents that call, match, and book their way through your professional network while you live your life.</div>
+          <div class="stats-line">
+            <span class="pill live">● LIVE</span>
+            <span class="pill">RELATIONSHIP OS</span>
+            <span class="pill">16 AI AGENTS</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="https://www.workswarm.ai" class="store-card" target="_blank" rel="noopener">
+        <div class="store-preview sp-pink">
+          <img class="mascot-png" src="stores/workswarm.png" alt="workswarm.ai preview" loading="lazy" onerror="this.onerror=null; this.src='https://image.thum.io/get/width/1200/crop/900/noanimate/https://www.workswarm.ai';">
+          <!-- Bee/swarm glyph -->
+          <svg class="glyph" viewBox="0 0 100 100">
+            <ellipse cx="50" cy="55" rx="22" ry="16" fill="#FFBA25" stroke="#1A1A1A" stroke-width="2.5"/>
+            <rect x="35" y="48" width="6" height="14" fill="#1A1A1A"/>
+            <rect x="47" y="48" width="6" height="14" fill="#1A1A1A"/>
+            <rect x="59" y="48" width="6" height="14" fill="#1A1A1A"/>
+            <ellipse cx="38" cy="42" rx="10" ry="6" fill="#FBF7F0" stroke="#1A1A1A" stroke-width="1.5" opacity="0.8"/>
+            <ellipse cx="62" cy="42" rx="10" ry="6" fill="#FBF7F0" stroke="#1A1A1A" stroke-width="1.5" opacity="0.8"/>
+            <circle cx="42" cy="50" r="2" fill="#1A1A1A"/>
+            <circle cx="58" cy="50" r="2" fill="#1A1A1A"/>
+            <path d="M30 30 Q35 22 42 28" stroke="#1A1A1A" stroke-width="1.5" fill="none"/>
+            <path d="M70 30 Q65 22 58 28" stroke="#1A1A1A" stroke-width="1.5" fill="none"/>
+          </svg>
+          <div class="pdomain">workswarm.ai</div>
+        </div>
+        <div class="store-meta">
+          <div class="midx">BUILT BY THE FOUNDER</div>
+          <h4>WORKSWARM.AI</h4>
+          <div class="who">By <b>Sachin Uppal</b>. The chat-native OS where humans and AI agents work in one room. Backed by Google, Antler and Anthropic. $250K raised.</div>
+          <div class="stats-line">
+            <span class="pill live">● LIVE</span>
+            <span class="pill">CHAT-NATIVE OS</span>
+            <span class="pill">GOOGLE / ANTLER / ANTHROPIC</span>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CHAPTER 04: THE METHOD with mascots -->
+<section class="chapter" id="method">
+  <div class="container">
+    <div class="ch-head">
+      <div class="ch-num sun">04</div>
+      <div>
+        <div class="ch-mini"><b>04</b> / THE METHOD</div>
+        <h2 class="ch-title">When you are done with us, you will have <em>your own shop</em>. <em>Your own tribe of builders</em>.<span class="aside">(Oh, and a certificate of completion from V3 Ventures. Since you asked.)</span></h2>
+      </div>
+    </div>
+
+    <div class="method-grid">
+      <!-- METHOD 1: HUNTER MASCOT (drop canva_mascots/mascot-hunter.png to override) -->
+      <div class="method-cell">
+        <div class="midx">METHOD 01 / FIND IT</div>
+        <div class="mascot-slot">
+          <img class="mascot-png" src="canva_mascots/mascot-hunter.png" alt="Hunter mascot" onerror="this.remove()">
+          <!-- Hunter mascot: explorer with binoculars (fallback) -->
+          <svg viewBox="0 0 200 160" style="width: 100%; height: 100%;">
+            <!-- Body -->
+            <ellipse cx="100" cy="115" rx="38" ry="38" fill="#0A0A0A"/>
+            <!-- Head -->
+            <circle cx="100" cy="65" r="32" fill="#FCF5EE" stroke="#0A0A0A" stroke-width="3"/>
+            <!-- Hair tuft -->
+            <path d="M82 42 Q90 28 100 35 Q110 28 118 42" fill="#0A0A0A"/>
+            <!-- Binoculars -->
+            <rect x="78" y="60" width="18" height="14" rx="3" fill="#0A0A0A"/>
+            <rect x="104" y="60" width="18" height="14" rx="3" fill="#0A0A0A"/>
+            <rect x="93" y="63" width="14" height="8" fill="#0A0A0A"/>
+            <circle cx="87" cy="67" r="4" fill="#FFBA25"/>
+            <circle cx="113" cy="67" r="4" fill="#FFBA25"/>
+            <!-- Smile -->
+            <path d="M90 82 Q100 88 110 82" stroke="#0A0A0A" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+            <!-- Arms -->
+            <path d="M62 100 Q55 80 75 75" stroke="#0A0A0A" stroke-width="6" fill="none" stroke-linecap="round"/>
+            <path d="M138 100 Q145 80 125 75" stroke="#0A0A0A" stroke-width="6" fill="none" stroke-linecap="round"/>
+            <!-- Flag -->
+            <line x1="160" y1="115" x2="160" y2="50" stroke="#0A0A0A" stroke-width="3"/>
+            <polygon points="160,50 185,58 160,66" fill="#FFFFFF" stroke="#0A0A0A" stroke-width="2"/>
+            <text x="166" y="62" font-family="Inter" font-size="8" font-weight="900">IDEA</text>
+          </svg>
+        </div>
+        <h3>FIND YOUR BUSINESS</h3>
+        <p>AI scans markets, competitors, and pricing. You talk to ten real customers. By Day 2 you know what to sell and to whom. No drop-shipping. No copy-paste. A real idea in your hands.</p>
+      </div>
+
+      <!-- METHOD 2: BUILDER MASCOT (drop canva_mascots/mascot-builder.png to override) -->
+      <div class="method-cell">
+        <div class="midx">METHOD 02 / BUILD IT</div>
+        <div class="mascot-slot">
+          <img class="mascot-png" src="canva_mascots/mascot-builder.png" alt="Builder mascot" onerror="this.remove()">
+          <!-- Builder mascot: kid with laptop (fallback) -->
+          <svg viewBox="0 0 200 160" style="width: 100%; height: 100%;">
+            <!-- Body -->
+            <ellipse cx="100" cy="115" rx="40" ry="38" fill="#0A0A0A"/>
+            <!-- Head -->
+            <circle cx="100" cy="65" r="32" fill="#FCF5EE" stroke="#0A0A0A" stroke-width="3"/>
+            <!-- Hair (pony) -->
+            <path d="M80 45 Q88 30 100 32 Q112 30 120 45" fill="#0A0A0A"/>
+            <circle cx="125" cy="55" r="6" fill="#0A0A0A"/>
+            <!-- Eyes (focused) -->
+            <line x1="85" y1="68" x2="93" y2="68" stroke="#0A0A0A" stroke-width="3.5" stroke-linecap="round"/>
+            <line x1="107" y1="68" x2="115" y2="68" stroke="#0A0A0A" stroke-width="3.5" stroke-linecap="round"/>
+            <!-- Tongue out concentrating -->
+            <path d="M90 82 L110 82 L105 90 Q100 92 95 90 Z" fill="#F08597" stroke="#0A0A0A" stroke-width="2"/>
+            <!-- Laptop -->
+            <rect x="65" y="100" width="70" height="40" fill="#FCF5EE" stroke="#0A0A0A" stroke-width="3"/>
+            <rect x="65" y="135" width="70" height="6" fill="#0A0A0A"/>
+            <text x="100" y="125" font-family="Inter" font-size="14" font-weight="900" fill="#0A0A0A" text-anchor="middle">AI/SHIP</text>
+            <!-- Sparkles -->
+            <text x="42" y="60" font-family="Inter" font-size="20" fill="#FFFFFF">✦</text>
+            <text x="155" y="80" font-family="Inter" font-size="14" fill="#FFFFFF">✦</text>
+            <text x="160" y="120" font-family="Inter" font-size="18" fill="#FFFFFF">✦</text>
+          </svg>
+        </div>
+        <h3>BUILD WITH AI</h3>
+        <p>Lovable, Cursor, ChatGPT. You describe your store in plain English (or Hindi). The AI writes the code, the copy, the images. You direct, judge, decide. The skill that compounds for forty years.</p>
+      </div>
+
+      <!-- METHOD 3: SELLER MASCOT (drop canva_mascots/mascot-seller.png to override) -->
+      <div class="method-cell">
+        <div class="midx">METHOD 03 / SELL IT</div>
+        <div class="mascot-slot">
+          <img class="mascot-png" src="canva_mascots/mascot-seller.png" alt="Seller mascot" onerror="this.remove()">
+          <!-- Seller mascot: kid celebrating with money (fallback) -->
+          <svg viewBox="0 0 200 160" style="width: 100%; height: 100%;">
+            <!-- Body -->
+            <ellipse cx="100" cy="115" rx="38" ry="38" fill="#0A0A0A"/>
+            <!-- Head -->
+            <circle cx="100" cy="65" r="32" fill="#FCF5EE" stroke="#0A0A0A" stroke-width="3"/>
+            <!-- Hair -->
+            <path d="M75 45 Q85 25 100 30 Q115 25 125 45 L120 50 L80 50 Z" fill="#0A0A0A"/>
+            <!-- Big smile eyes -->
+            <path d="M82 65 Q88 60 94 65" stroke="#0A0A0A" stroke-width="3" fill="none" stroke-linecap="round"/>
+            <path d="M106 65 Q112 60 118 65" stroke="#0A0A0A" stroke-width="3" fill="none" stroke-linecap="round"/>
+            <!-- Open mouth shout -->
+            <ellipse cx="100" cy="82" rx="6" ry="8" fill="#0A0A0A"/>
+            <!-- Arms up -->
+            <path d="M65 100 Q50 75 60 50" stroke="#0A0A0A" stroke-width="6" fill="none" stroke-linecap="round"/>
+            <path d="M135 100 Q150 75 140 50" stroke="#0A0A0A" stroke-width="6" fill="none" stroke-linecap="round"/>
+            <!-- Cash in hand -->
+            <rect x="50" y="40" width="22" height="14" fill="#FFFFFF" stroke="#0A0A0A" stroke-width="2"/>
+            <text x="61" y="51" font-family="Inter" font-size="13" font-weight="900" text-anchor="middle">₹</text>
+            <rect x="128" y="40" width="22" height="14" fill="#FFFFFF" stroke="#0A0A0A" stroke-width="2"/>
+            <text x="139" y="51" font-family="Inter" font-size="13" font-weight="900" text-anchor="middle">₹</text>
+            <!-- Celebration confetti -->
+            <circle cx="30" cy="80" r="3" fill="#F08597"/>
+            <circle cx="170" cy="100" r="3" fill="#FFBA25"/>
+            <circle cx="40" cy="120" r="3" fill="#F89A4D"/>
+            <circle cx="165" cy="50" r="3" fill="#F08597"/>
+          </svg>
+        </div>
+        <h3>SHIP AND SELL</h3>
+        <p>Live on the internet. First customer found. First rupee earned. First lesson in the only thing school does not teach: someone gave you money for something you made. The rest is repetition.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHAPTER 05: WHO IS TEACHING YOU -->
+<section class="chapter" id="teachers" style="background: var(--cream);">
+  <div class="container">
+    <div class="ch-head">
+      <div class="ch-num">05</div>
+      <div>
+        <div class="ch-mini"><b>05</b> / THE FOLK IN THE ROOM</div>
+        <h2 class="ch-title">Who is teaching you. <em>And why we are doing this.</em></h2>
+        <p class="ch-deck">Sachin started it. Theresa unlocked it. Arjun and Abhishek backed it. Two of us have 14-year-olds of our own. We built this for them first, because we could not find anyone else doing it well. Now we are inviting you and your kid in too.</p>
+      </div>
+    </div>
+
+    <div class="founders">
+      <article class="founder" style="position:relative;">
+        <div class="founder-photo">
+          <img src="founders/theresa-ronnie.jpg" alt="Theresa Ronnie" onerror="this.remove()">
+          <svg viewBox="0 0 100 130" xmlns="http://www.w3.org/2000/svg">
+            <rect width="100" height="130" fill="#FCE3E8"/>
+            <circle cx="50" cy="55" r="24" fill="#FBF7F0" stroke="#1A1A1A" stroke-width="2"/>
+            <path d="M28 42 Q40 22 50 24 Q60 22 72 42 L70 50 L30 50 Z" fill="#1A1A1A"/>
+            <circle cx="42" cy="56" r="2.5" fill="#1A1A1A"/>
+            <circle cx="58" cy="56" r="2.5" fill="#1A1A1A"/>
+            <path d="M44 67 Q50 72 56 67" stroke="#1A1A1A" stroke-width="2" fill="none" stroke-linecap="round"/>
+            <rect x="30" y="80" width="40" height="50" fill="#1A1A1A"/>
+          </svg>
+        </div>
+        <div class="founder-meta">
+          <div class="founder-name">THERESA RONNIE</div>
+          <div class="founder-role">CO-FOUNDER / BEHAVIOURIST + BRAND</div>
+          <div class="founder-tags"><span>PARENT OF A 14-YEAR-OLD</span></div>
+          <p class="founder-bio">Behaviourist and brand communications specialist. Founder of Bombay Breed. Spent the last two decades helping consumer brands find their voice (Microsoft, KPMG, Ford). Came in as co-founder to unlock AI/SHIP's potential. Sachin built the thing. She made sure people would want it.</p>
+        </div>
+      </article>
+
+      <article class="founder" style="position:relative;">
+        <div class="founder-photo">
+          <img src="founders/sachin-uppal.jpg" alt="Sachin Uppal" onerror="this.remove()">
+          <svg viewBox="0 0 100 130" xmlns="http://www.w3.org/2000/svg">
+            <rect width="100" height="130" fill="#FDE6CE"/>
+            <circle cx="50" cy="55" r="24" fill="#FBF7F0" stroke="#1A1A1A" stroke-width="2"/>
+            <path d="M30 44 Q38 28 50 30 Q62 28 70 44 L68 48 L32 48 Z" fill="#1A1A1A"/>
+            <circle cx="42" cy="56" r="2.5" fill="#1A1A1A"/>
+            <circle cx="58" cy="56" r="2.5" fill="#1A1A1A"/>
+            <path d="M44 68 Q50 71 56 68" stroke="#1A1A1A" stroke-width="2" fill="none" stroke-linecap="round"/>
+            <rect x="30" y="80" width="40" height="50" fill="#1A1A1A"/>
+          </svg>
+        </div>
+        <div class="founder-meta">
+          <div class="founder-name">SACHIN UPPAL</div>
+          <div class="founder-role">FOUNDER / AI/SHIP IS HIS BABY</div>
+          <div class="founder-tags"><span>PARENT OF A 14-YEAR-OLD</span></div>
+          <p class="founder-bio">Engineer turned digital marketer turned operator. Built Workswarm, NexoCircle, Telecallers.ai. Has managed $100M+ in marketing spend across 60+ D2C brands. Started AI/SHIP because he wanted his own 14-year-old to learn the AI stack the way real builders use it, not the way classrooms teach it.</p>
+        </div>
+      </article>
+
+      <article class="founder" style="position:relative;">
+        <div class="founder-photo">
+          <img src="founders/arjun-vaidya.jpg" alt="Arjun Vaidya" onerror="this.remove()">
+          <svg viewBox="0 0 100 130" xmlns="http://www.w3.org/2000/svg">
+            <rect width="100" height="130" fill="#FFEDB8"/>
+            <circle cx="50" cy="55" r="24" fill="#FBF7F0" stroke="#1A1A1A" stroke-width="2"/>
+            <path d="M28 42 Q42 26 50 28 Q58 26 72 42 L70 48 L30 48 Z" fill="#1A1A1A"/>
+            <circle cx="42" cy="56" r="2.5" fill="#1A1A1A"/>
+            <circle cx="58" cy="56" r="2.5" fill="#1A1A1A"/>
+            <path d="M44 68 Q50 71 56 68" stroke="#1A1A1A" stroke-width="2" fill="none" stroke-linecap="round"/>
+            <rect x="30" y="80" width="40" height="50" fill="#1A1A1A"/>
+          </svg>
+        </div>
+        <div class="founder-meta">
+          <div class="founder-name">ARJUN VAIDYA</div>
+          <div class="founder-role">CO-FOUNDER / V3 VENTURES</div>
+          <div class="founder-tags"><span>SCALED + SOLD DR VAIDYA'S</span></div>
+          <p class="founder-bio">Built Dr Vaidya's, a D2C ayurveda brand, to a category leader and exited. Now backs consumer founders through V3 Ventures. Your guide on how a small thing on the internet actually becomes a real business that pays for itself.</p>
+        </div>
+      </article>
+
+      <article class="founder" style="position:relative;">
+        <div class="founder-photo">
+          <img src="founders/abhishek-shah.jpg" alt="Abhishek Shah" onerror="this.remove()">
+          <svg viewBox="0 0 100 130" xmlns="http://www.w3.org/2000/svg">
+            <rect width="100" height="130" fill="#FCE3E8"/>
+            <circle cx="50" cy="55" r="24" fill="#FBF7F0" stroke="#1A1A1A" stroke-width="2"/>
+            <path d="M30 44 Q40 30 50 30 Q60 30 70 44 L68 50 L32 50 Z" fill="#1A1A1A"/>
+            <circle cx="42" cy="56" r="2.5" fill="#1A1A1A"/>
+            <circle cx="58" cy="56" r="2.5" fill="#1A1A1A"/>
+            <path d="M44 68 Q50 71 56 68" stroke="#1A1A1A" stroke-width="2" fill="none" stroke-linecap="round"/>
+            <rect x="30" y="80" width="40" height="50" fill="#1A1A1A"/>
+          </svg>
+        </div>
+        <div class="founder-meta">
+          <div class="founder-name">ABHISHEK SHAH</div>
+          <div class="founder-role">CO-FOUNDER / D2C INSIDER</div>
+          <div class="founder-tags"><span>INDIA'S LARGEST D2C COMMUNITY</span></div>
+          <p class="founder-bio">Runs D2C Insider, the network behind most of India's direct-to-consumer founders. Brings the rolodex (suppliers, payment partners, growth hacks) that turns your seven-day shop into something that can actually run for years.</p>
+        </div>
+      </article>
+    </div>
+
+    <!-- Founder section corner peeker -->
+    <div class="peeker peeker-founders-br" style="position:absolute;">
+      <img src="canva_mascots/peeker-kids.png" alt="" onerror="this.remove()">
+      <svg viewBox="0 0 120 140" xmlns="http://www.w3.org/2000/svg">
+        <!-- Kid with thumbs up holding "OUR KIDS" -->
+        <ellipse cx="60" cy="118" rx="38" ry="22" fill="#FFBA25" stroke="#1A1A1A" stroke-width="2.5"/>
+        <circle cx="60" cy="68" r="30" fill="#FBF7F0" stroke="#1A1A1A" stroke-width="2.5"/>
+        <path d="M36 50 Q48 30 60 32 Q72 30 84 50 L82 58 L38 58 Z" fill="#1A1A1A"/>
+        <circle cx="50" cy="68" r="2.5" fill="#1A1A1A"/>
+        <circle cx="70" cy="68" r="2.5" fill="#1A1A1A"/>
+        <path d="M48 82 Q60 90 72 82" stroke="#1A1A1A" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        <!-- Sign -->
+        <rect x="14" y="78" width="42" height="22" fill="#F08597" stroke="#1A1A1A" stroke-width="2"/>
+        <text x="35" y="92" font-family="Inter" font-size="9" font-weight="900" text-anchor="middle" fill="#1A1A1A">OUR KIDS</text>
+        <path d="M30 90 Q40 100 50 95" stroke="#1A1A1A" stroke-width="4" fill="none" stroke-linecap="round"/>
+      </svg>
+    </div>
+
+    <div class="teachers-foot">
+      <div class="tf-quote">"Right now, most kids are using AI to make memes and edit images. We thought it could help them make a business instead. AI/SHIP is the room where the second thing happens."</div>
+      <div class="tf-attrib">THE AI/SHIP FOUNDERS</div>
+    </div>
+  </div>
+</section>
+
+<!-- CHAPTER 06: FOUNDER LETTER -->
+<section class="chapter" id="parents">
+  <div class="container">
+    <div class="ch-head">
+      <div class="ch-num org">06</div>
+      <div>
+        <div class="ch-mini"><b>06</b> / FOR THE PARENTS READING THIS</div>
+        <h2 class="ch-title">A note for the parents <em>reading this.</em></h2>
+      </div>
+    </div>
+
+    <div class="letter-block" style="position:relative;">
+      <!-- Parent letter peeker — heart in hand -->
+      <div class="peeker peeker-letter-tr">
+        <img src="canva_mascots/peeker-heart.png" alt="" onerror="this.remove()">
+        <svg viewBox="0 0 90 90" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="45" cy="42" r="28" fill="#FBF7F0" stroke="#1A1A1A" stroke-width="2.5"/>
+          <path d="M22 26 Q32 8 45 12 Q58 8 68 26" fill="#1A1A1A"/>
+          <path d="M34 42 Q40 38 46 42" stroke="#1A1A1A" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          <path d="M50 42 Q56 38 62 42" stroke="#1A1A1A" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          <path d="M34 56 Q45 62 56 56" stroke="#1A1A1A" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          <!-- Heart -->
+          <path d="M75 18 C70 10 60 14 65 24 C60 14 50 18 55 28 C58 35 65 38 65 38 C65 38 72 35 75 28 C80 18 80 10 75 18 Z" fill="#F08597" stroke="#1A1A1A" stroke-width="1.5"/>
+        </svg>
+      </div>
+      <div class="letter-photo">
+        <!-- Pexels 4308093 by Ketut Subiyanto. Drop pexels/family-laptop.jpg to override. -->
+        <img class="mascot-png" src="pexels/family-laptop.jpg" alt="Parent and teen building together" onerror="this.src='https://images.pexels.com/photos/4308093/pexels-photo-4308093.jpeg?auto=compress&cs=tinysrgb&w=1000'; this.onerror=null;">
+        <!-- Founder mascot illustration fallback -->
+        <svg viewBox="0 0 200 280" style="width:100%; height:100%;">
+          <rect x="0" y="0" width="200" height="280" fill="#F08597"/>
+          <!-- Body -->
+          <rect x="55" y="160" width="90" height="120" fill="#0A0A0A"/>
+          <!-- Head -->
+          <circle cx="100" cy="120" r="50" fill="#FCF5EE" stroke="#0A0A0A" stroke-width="3"/>
+          <!-- Hair -->
+          <path d="M55 95 Q70 60 100 65 Q130 60 145 95 L142 105 L58 105 Z" fill="#0A0A0A"/>
+          <!-- Glasses -->
+          <circle cx="85" cy="118" r="11" fill="none" stroke="#0A0A0A" stroke-width="3"/>
+          <circle cx="115" cy="118" r="11" fill="none" stroke="#0A0A0A" stroke-width="3"/>
+          <line x1="96" y1="118" x2="104" y2="118" stroke="#0A0A0A" stroke-width="3"/>
+          <!-- Smile -->
+          <path d="M85 140 Q100 150 115 140" stroke="#0A0A0A" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <!-- Bindi/dot -->
+          <circle cx="100" cy="92" r="3" fill="#F89A4D"/>
+        </svg>
+        <div class="ploc">BOMBAY / 2026</div>
+      </div>
+      <div class="letter-body">
+        <h3>The founders built this for <span class="pk">their own kids first.</span></h3>
+        <p>Sachin and Ronnie both have 14-year-olds at home. The conversation in their kitchens was the same one happening in yours: <strong>what to do with the summer, what is actually worth learning, why everything available costs so much and teaches so little.</strong></p>
+        <p>Sachin started AI/SHIP. He is the engineer and operator behind every tool, every workflow, every shipped product the kids in the room will touch. Ronnie came in to make sure other parents could see what he had built, and trust it. Two friends came in next. Arjun, who built and sold Dr Vaidya's. Abhishek, who runs India's largest D2C founder community.</p>
+        <p>This is not a coding bootcamp. Not a summer camp. It is seven days where your child sits with capable adults and other kids their age, uses the same AI tools that real founders use, and walks out with a working shop on the internet.</p>
+        <p>If their own kids are in the room, you can be reasonably sure they are not phoning it in. Reserve a seat. They will WhatsApp you the dates and answer every question before you pay a rupee.</p>
+        <div class="sig"><b>THE AI/SHIP FOUNDERS</b> / SACHIN, RONNIE, ARJUN, ABHISHEK<br>FROM PARENTS, FOR KIDS</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHAPTER 07: PRICE -->
+<section class="price-zone" id="price">
+  <div class="container">
+    <div class="ch-head">
+      <div class="ch-num">07</div>
+      <div>
+        <div class="ch-mini"><b>07</b> / THE PRICE</div>
+        <h2 class="ch-title">ONE PRICE. <span class="pk">ONE OUTCOME.</span><br>NO TIERS. NO <span class="or">UPSELLS.</span></h2>
+        <p class="ch-deck">If your child does not ship a live store by Day 7, the next batch is on us. That is the only refund policy. We are confident.</p>
+      </div>
+    </div>
+
+    <div class="price-card" style="position:relative;">
+      <!-- Price corner peeker -->
+      <div class="peeker peeker-price-corner">
+        <img src="canva_mascots/peeker-money.png" alt="" onerror="this.remove()">
+        <svg viewBox="0 0 90 110" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="45" cy="92" rx="30" ry="18" fill="#1A1A1A"/>
+          <circle cx="45" cy="50" r="26" fill="#FBF7F0" stroke="#1A1A1A" stroke-width="2.5"/>
+          <path d="M25 32 Q35 14 45 18 Q55 14 65 32" fill="#1A1A1A"/>
+          <path d="M34 50 Q40 45 46 50" stroke="#1A1A1A" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          <path d="M50 50 Q56 45 62 50" stroke="#1A1A1A" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          <ellipse cx="45" cy="62" rx="4" ry="5" fill="#1A1A1A"/>
+          <!-- Rupee sign held up -->
+          <path d="M75 70 Q88 50 80 30" stroke="#1A1A1A" stroke-width="5" fill="none" stroke-linecap="round"/>
+          <circle cx="80" cy="28" r="12" fill="#FFBA25" stroke="#1A1A1A" stroke-width="2"/>
+          <text x="80" y="34" font-family="Inter" font-size="16" font-weight="900" text-anchor="middle" fill="#1A1A1A">₹</text>
+        </svg>
+      </div>
+      <div class="ribbon">FIRST COHORT / 2026</div>
+      <div class="badge">SEVEN-DAY SPRINT / ALL INCLUSIVE</div>
+      <h3>AI/SHIP FIRST COHORT</h3>
+      <div class="price">
+        <span class="cur">₹</span><span class="amt">24,999</span>
+      </div>
+      <div class="price-sub">EVERYTHING BELOW INCLUDED / GST PAID / EMI ON REQUEST</div>
+
+      <ul class="includes">
+        <li>Seven days live with the four founders. Two days in your city, five days online.</li>
+        <li>Your own domain name (.in or .com) for one year</li>
+        <li>Lovable, Cursor, and ChatGPT credits for the sprint</li>
+        <li>One mentor assigned to you across all seven days</li>
+        <li>Six months of hosting and infrastructure paid for</li>
+        <li>Lifetime entry to the AI/SHIP Builders Club</li>
+        <li>Parent dashboard so mum and dad see the wins live</li>
+      </ul>
+
+      <a href="#reserve" class="pcta">RESERVE A SEAT →</a>
+      <div class="guarantee">NO HIDDEN FEES. NO UPGRADES. ONE PRICE. ONE OUTCOME.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CHAPTER 08: FAQ -->
+<section class="chapter" id="faq">
+  <div class="container">
+    <div class="ch-head">
+      <div class="ch-num sun">08</div>
+      <div>
+        <div class="ch-mini"><b>08</b> / THE QUESTIONS PARENTS ASK FIRST</div>
+        <h2 class="ch-title">FIVE QUESTIONS. <span class="pk">FIVE HONEST ANSWERS.</span></h2>
+      </div>
+    </div>
+
+    <div class="faq-grid">
+      <details class="faq" open>
+        <summary>
+          <div class="fnum">Q / 01</div>
+          <div class="fq">IS MY CHILD GOING TO BE REPLACED BY AI IF THEY LEARN THIS?</div>
+          <div class="fmark">+</div>
+        </summary>
+        <div class="fa">
+          <div class="myth">Myth: "If AI can build a website, my child does not need to learn anything."</div>
+          <div class="truth"><b>Truth.</b> AI builds. Humans decide. AI/SHIP teaches the deciding part, which is the part AI cannot do. Your child learns to direct AI tools, judge their output, talk to real customers, and run a real business. Those skills compound for a lifetime. They do not get replaced.</div>
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>
+          <div class="fnum">Q / 02</div>
+          <div class="fq">IS THIS JUST ANOTHER CODING CLASS IN DISGUISE?</div>
+          <div class="fmark">+</div>
+        </summary>
+        <div class="fa">
+          <div class="myth">Myth: "AI/SHIP teaches coding."</div>
+          <div class="truth"><b>Truth.</b> We teach almost no coding. Lovable and Cursor write the code. Your child learns product thinking, customer research, copywriting, design judgement, and selling. The closest analogue is a seven-day MBA, not a coding bootcamp.</div>
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>
+          <div class="fnum">Q / 03</div>
+          <div class="fq">WILL MY CHILD NEGLECT SCHOOL WORK?</div>
+          <div class="fmark">+</div>
+        </summary>
+        <div class="fa">
+          <div class="truth">AI/SHIP runs during school holidays (summer and winter batches). The seven days are intentional and timed for breaks. Strict no-late-night policy. We finish at 4pm IST every day.</div>
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>
+          <div class="fnum">Q / 04</div>
+          <div class="fq">WHAT IF MY CHILD HAS NO BUSINESS IDEA?</div>
+          <div class="fmark">+</div>
+        </summary>
+        <div class="fa">
+          <div class="truth">That is what Day 1 is for. Most students walk in with no idea and walk out with three validated ones by 4pm Monday. Idea generation is the easiest part. The hard part is shipping. We focus on the hard part.</div>
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>
+          <div class="fnum">Q / 05</div>
+          <div class="fq">IS ₹24,999 THE ONLY FEE? ANY HIDDEN COSTS?</div>
+          <div class="fmark">+</div>
+        </summary>
+        <div class="fa">
+          <div class="truth"><b>Yes for the seven days.</b> ₹24,999 covers the entire programme — teaching, tools, your child's domain, six months of hosting, mentor access. There are no masterclasses, no premium tiers, no upsells bundled into the fee. <br><br>If your child's shop takes off after the programme and you want to invest further in support features for their store or platform (continued growth tools, ongoing mentorship, advanced infrastructure), that is a separate decision you make as a parent, entirely optional, on your timing. Nothing is auto-billed. Nothing is hidden.</div>
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>
+          <div class="fnum">Q / 06</div>
+          <div class="fq">THIS IS YOUR FIRST COHORT. WHY SHOULD I TRUST YOU?</div>
+          <div class="fmark">+</div>
+        </summary>
+        <div class="fa">
+          <div class="truth"><b>Honest answer.</b> You should not trust us yet. Trust the four people running it. Theresa and Sachin are putting their own 14-year-olds in the room. Arjun has built and exited a consumer brand. Abhishek runs India's largest D2C founder community. None of us would attach our names to a thing we did not believe in. We are also small on purpose. First cohort is capped at 24 kids so we can pay attention.</div>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<div class="final">
+  <h2>WHY SHOULD <span class="or">ADULTS</span><br>HAVE ALL THE FUN<span class="or">???</span></h2>
+  <p>First cohort is small. Twenty-four seats. Mumbai and online. Reserve yours and we will WhatsApp you the dates within the day.</p>
+  <a href="#reserve" class="final-cta">RESERVE A SEAT FOR ₹24,999 →</a>
+  <div class="deva">अब तुम्हारी बारी।</div>
+
+  <!-- Mascots flanking the CTA (drop canva_mascots/mascot-pointer.png + mascot-thumbs.png to override) -->
+  <div class="final-mascot-l">
+    <img class="mascot-png" src="canva_mascots/mascot-pointer.png" alt="Pointer mascot" onerror="this.remove()">
+  <svg viewBox="0 0 160 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
+    <!-- left mascot: kid pointing right (fallback) -->
+    <ellipse cx="80" cy="155" rx="42" ry="44" fill="#0A0A0A"/>
+    <circle cx="80" cy="85" r="36" fill="#FCF5EE" stroke="#0A0A0A" stroke-width="3"/>
+    <path d="M55 65 Q70 40 80 48 Q90 40 105 65 L102 75 L58 75 Z" fill="#0A0A0A"/>
+    <path d="M68 88 Q74 82 80 88" stroke="#0A0A0A" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <path d="M88 88 Q94 82 100 88" stroke="#0A0A0A" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <path d="M70 105 Q80 112 90 105" stroke="#0A0A0A" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <!-- pointing arm -->
+    <path d="M120 140 Q150 130 158 110" stroke="#0A0A0A" stroke-width="7" fill="none" stroke-linecap="round"/>
+    <circle cx="158" cy="110" r="6" fill="#FCF5EE" stroke="#0A0A0A" stroke-width="2"/>
+  </svg>
+  </div>
+
+  <div class="final-mascot-r">
+    <img class="mascot-png" src="canva_mascots/mascot-thumbs.png" alt="Thumbs-up mascot" onerror="this.remove()">
+  <svg viewBox="0 0 160 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
+    <!-- right mascot: kid with thumbs up (fallback) -->
+    <ellipse cx="80" cy="155" rx="42" ry="44" fill="#0A0A0A"/>
+    <circle cx="80" cy="85" r="36" fill="#FCF5EE" stroke="#0A0A0A" stroke-width="3"/>
+    <path d="M55 65 Q70 42 80 50 Q92 42 105 65" fill="#0A0A0A"/>
+    <circle cx="68" cy="85" r="3" fill="#0A0A0A"/>
+    <circle cx="92" cy="85" r="3" fill="#0A0A0A"/>
+    <path d="M65 100 Q80 112 95 100" stroke="#0A0A0A" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <!-- thumbs up arm -->
+    <path d="M40 140 Q10 120 8 95" stroke="#0A0A0A" stroke-width="7" fill="none" stroke-linecap="round"/>
+    <circle cx="8" cy="92" r="9" fill="#FCF5EE" stroke="#0A0A0A" stroke-width="2.5"/>
+    <line x1="8" y1="84" x2="8" y2="76" stroke="#0A0A0A" stroke-width="3" stroke-linecap="round"/>
+  </svg>
+  </div>
+</div>
+
+<div class="color-bars">
+  <div></div><div></div><div></div><div></div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-grid">
+    <div class="foot-brand">
+      <a href="#" class="wordmark" style="display:inline-flex;align-items:center;"><span class="ai">AI</span><span class="sl">/</span><span class="ship">SHIP</span></a>
+      <p>A seven-day AI-to-ecommerce sprint for Indian youth aged 12 to 30. Built by parents, for kids. Internet-housed. No middlemen.</p>
+      <p style="margin-top:8px; font-family:'JetBrains Mono', monospace; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; opacity:0.6;">Presented by Capt. HTTPS.</p>
+      <span class="badge badge-xl badge-coral badge-sticker foot-mascot-stamp" style="margin-top:24px;display:flex;">
+        <img src="canva_mascots/badge-celebrating.png" alt="Capt. HTTPS — signing off" onerror="this.remove()">
+      </span>
+    </div>
+    <div class="foot-col">
+      <h5>Programme</h5>
+      <a href="#truth">The Truth</a>
+      <a href="#catalog">The 7 Days</a>
+      <a href="#stores">What You Build</a>
+      <a href="#teachers">The Folk</a>
+      <a href="#price">The Price</a>
+    </div>
+    <div class="foot-col">
+      <h5>For Parents</h5>
+      <a href="#parents">Parent To Parent</a>
+      <a href="#teachers">Who Is Teaching</a>
+      <a href="#faq">FAQ</a>
+      <a href="https://wa.me/919876543210">WhatsApp Us</a>
+    </div>
+    <div class="foot-col">
+      <h5>Get In Touch</h5>
+      <a href="mailto:hello@aiship.in">hello@aiship.in</a>
+      <a href="tel:+919876543210">+91 98XX XX XX XX</a>
+      <a href="https://instagram.com/aiship.in">Instagram / @aiship.in</a>
+      <a href="#">Alumni Telegram</a>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span>© 2026 AI/SHIP. Built by parents, for kids. Made in Mumbai with care.</span>
+    <span class="mono">[BBC_2026_06_29 / AI/SHIP v2.0 / EDITION 02 / 01]</span>
+  </div>
+</footer>
+
+<!-- STICKY MOBILE CTA -->
+<div class="sticky-mobile">
+  <a href="#reserve">RESERVE A SEAT / ₹24,999 →</a>
+</div>
+
+<script>
+  // FAQ exclusive open
+  document.querySelectorAll('details.faq').forEach(d => {
+    d.addEventListener('toggle', () => {
+      if (d.open) {
+        document.querySelectorAll('details.faq').forEach(o => { if (o !== d) o.open = false; });
+      }
+    });
+  });
+
+  // Animate bars on scroll into view
+  const bars = document.querySelectorAll('.bar-fill');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const w = e.target.style.width;
+        e.target.style.width = '0';
+        requestAnimationFrame(() => { e.target.style.width = w; });
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.3 });
+  bars.forEach(b => {
+    const w = b.style.width;
+    b.dataset.target = w;
+    observer.observe(b);
+  });
+
+  // Soft seat counter on lead form submit (mock)
+  // (actual integration: replace alert with POST to your CRM endpoint)
+</script>
+
+</body>
+</html>
