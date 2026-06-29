@@ -1774,10 +1774,25 @@
 </section>
 
 <!-- MEET CAPT. HTTPS — the mascot moment -->
+<style>
+  @keyframes captFloat {
+    0%, 100% { transform: translateY(0px) rotate(-4deg); }
+    50% { transform: translateY(-18px) rotate(4deg); }
+  }
+  .captain-cutout {
+    width: 100%;
+    height: auto;
+    max-width: 320px;
+    display: block;
+    animation: captFloat 5s ease-in-out infinite;
+    filter: drop-shadow(0 16px 24px rgba(0,0,0,0.12));
+    will-change: transform;
+  }
+</style>
 <section class="captain-section" style="background: var(--paper); padding: 96px 32px; border-top: 1px solid var(--rule);">
-  <div class="captain-grid" style="max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 280px 1fr; gap: 64px; align-items: center;">
-    <div class="captain-badge" style="aspect-ratio: 1/1; border-radius: 50%; overflow: hidden; position: relative; background: var(--cream); border: 1px solid var(--rule); max-width: 280px; justify-self: start;">
-      <img src="canva_mascots/Mascot Badge - Jetpack.png" alt="Capt. HTTPS, the AI/SHIP mascot" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transform: scale(1.55);">
+  <div class="captain-grid" style="max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 320px 1fr; gap: 64px; align-items: center;">
+    <div class="captain-badge" style="justify-self: center;">
+      <img class="captain-cutout" src="canva_mascots/capt-https-skater.png" alt="Capt. HTTPS, suspended in space">
     </div>
     <div>
       <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--coral-deep); font-weight: 700; margin-bottom: 14px;">MEET YOUR CAPTAIN</div>
