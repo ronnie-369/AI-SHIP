@@ -86,10 +86,16 @@
   .nav-inner {
     max-width: 1320px;
     margin: 0 auto;
-    padding: 16px 32px;
+    padding: 0 32px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    min-height: 88px;
+  }
+  /* When the logo is set to large (288px), let it dominate the nav row
+     without empty vertical space — the GIF itself defines nav height. */
+  .nav-inner > .wordmark img {
+    margin: 4px 0;
   }
   .wordmark {
     font-family: 'Inter', sans-serif;
@@ -1615,7 +1621,7 @@
 <nav class="main">
   <div class="nav-inner">
     <a href="#" class="wordmark" aria-label="AI/SHIP — presented by Capt. HTTPS" style="display:inline-flex;align-items:center;line-height:0;">
-      <img src="brand/aiship-logo.gif" alt="AI/SHIP" style="height:72px;width:72px;display:block;border-radius:50%;">
+      <img src="brand/aiship-logo.gif" alt="AI/SHIP" style="height:288px;width:288px;display:block;border-radius:50%;">
     </a>
     <div class="nav-links">
       <a href="#truth">The Truth</a>
