@@ -1551,6 +1551,8 @@
     .method-grid { grid-template-columns: 1fr; }
     .method-cell { border-right: none; border-bottom: 1px solid var(--ink); }
     .matrix { grid-template-columns: 1fr; }
+    .captain-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
+    .captain-badge { max-width: 180px !important; margin: 0 auto; }
     .founders { grid-template-columns: 1fr; }
     .founder { grid-template-columns: 120px 1fr; gap: 16px; padding: 20px; }
     .letter-block { grid-template-columns: 1fr; padding: 32px; gap: 32px; }
@@ -1711,29 +1713,6 @@
     </form>
   </div>
 
-  <!-- Hero corner peeker (Socialtel-style): mascot poking up from the bottom-right of the photo block. Drop canva_mascots/peeker-confetti.png to override. -->
-  <div class="peeker peeker-hero-rb">
-    <img src="canva_mascots/peeker-confetti.png" alt="" onerror="this.remove()">
-    <svg viewBox="0 0 140 160" xmlns="http://www.w3.org/2000/svg">
-      <!-- Confetti popper kid peeking -->
-      <ellipse cx="70" cy="135" rx="42" ry="40" fill="#F08597" stroke="#1A1A1A" stroke-width="2.5"/>
-      <circle cx="70" cy="75" r="32" fill="#FBF7F0" stroke="#1A1A1A" stroke-width="2.5"/>
-      <path d="M48 55 Q60 38 70 42 Q80 38 92 55 L90 62 L50 62 Z" fill="#1A1A1A"/>
-      <circle cx="60" cy="78" r="3" fill="#1A1A1A"/>
-      <circle cx="80" cy="78" r="3" fill="#1A1A1A"/>
-      <ellipse cx="70" cy="92" rx="5" ry="6" fill="#1A1A1A"/>
-      <!-- Arms with popper -->
-      <path d="M40 110 Q22 90 30 60" stroke="#1A1A1A" stroke-width="6" fill="none" stroke-linecap="round"/>
-      <path d="M100 110 Q118 90 110 60" stroke="#1A1A1A" stroke-width="6" fill="none" stroke-linecap="round"/>
-      <!-- Confetti -->
-      <circle cx="20" cy="40" r="3.5" fill="#FFBA25"/>
-      <circle cx="120" cy="50" r="3.5" fill="#F89A4D"/>
-      <circle cx="14" cy="80" r="3" fill="#F89A4D"/>
-      <circle cx="128" cy="20" r="3" fill="#FFBA25"/>
-      <path d="M125 75 L130 70 L132 78 Z" fill="#F08597"/>
-      <path d="M12 30 L8 36 L16 36 Z" fill="#1A1A1A"/>
-    </svg>
-  </div>
   <!-- Background mascot: drop canva_mascots/mascot-hero.png to override -->
   <div class="hero-mascot">
     <img class="mascot-png" src="canva_mascots/mascot-hero.png" alt="" onerror="this.remove()">
@@ -1773,11 +1752,44 @@
     </div>
     <div class="stat-cell">
       <div class="idx">04 / THE RUPEE</div>
-      <div class="num">YOUR ₹</div>
+      <div class="num">MAKE ₹</div>
       <div class="lbl">THE FIRST RUPEE OF YOUR OWN MONEY, EARNED FROM SOMEONE WHO BOUGHT YOUR THING.</div>
     </div>
   </div>
 </div>
+
+<!-- FOUNDERS QUOTE — surfaced high, the positioning anchor -->
+<section style="background: var(--cream); padding: 96px 32px; border-top: 1px solid var(--rule);">
+  <div style="max-width: 1100px; margin: 0 auto; text-align: center;">
+    <blockquote style="font-family: 'Inter', sans-serif; font-weight: 600; font-size: clamp(28px, 3.8vw, 48px); line-height: 1.2; letter-spacing: -1px; color: var(--ink); margin-bottom: 28px;">
+      "Your kid is already using AI to make <span style="color: var(--muted);">memes</span>. We're teaching them to use the same tools to make <span style="color: var(--coral-deep);">a business.</span>"
+    </blockquote>
+    <div style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--coral-deep); font-weight: 700;">
+      Sachin &amp; Ronnie, the AI/SHIP founders
+    </div>
+  </div>
+</section>
+
+<!-- MEET CAPT. HTTPS — the mascot moment -->
+<section class="captain-section" style="background: var(--paper); padding: 96px 32px; border-top: 1px solid var(--rule);">
+  <div class="captain-grid" style="max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 280px 1fr; gap: 64px; align-items: center;">
+    <div class="captain-badge" style="aspect-ratio: 1/1; border-radius: 50%; overflow: hidden; position: relative; background: var(--cream); border: 1px solid var(--rule); max-width: 280px; justify-self: start;">
+      <img src="canva_mascots/Mascot Badge - Jetpack.png" alt="Capt. HTTPS, the AI/SHIP mascot" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transform: scale(1.55);">
+    </div>
+    <div>
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--coral-deep); font-weight: 700; margin-bottom: 14px;">MEET YOUR CAPTAIN</div>
+      <h3 style="font-family: 'Inter', sans-serif; font-weight: 600; font-size: clamp(28px, 3.4vw, 42px); line-height: 1.1; letter-spacing: -1px; margin-bottom: 20px; color: var(--ink);">Capt. HTTPS is the astronaut steering your AI/Ship.</h3>
+      <p style="font-size: 17px; line-height: 1.55; color: var(--ink); max-width: 620px; margin-bottom: 14px;">For seven days he takes every kid on the same voyage. Four ports of call:</p>
+      <p style="font-size: 17px; line-height: 1.6; color: var(--ink); max-width: 620px;">
+        <b style="color: var(--coral-deep);">Curiosity.</b> What could I make?<br>
+        <b style="color: var(--coral-deep);">Competence.</b> I can actually use these tools.<br>
+        <b style="color: var(--coral-deep);">Profitability.</b> Someone gave me money for it.<br>
+        <b style="color: var(--coral-deep);">Friendships.</b> A pack of builders who get it.
+      </p>
+      <p style="font-size: 14px; line-height: 1.5; color: var(--muted); margin-top: 18px; font-style: italic;">The badge you see all over this site is him. The whole site is his.</p>
+    </div>
+  </div>
+</section>
 
 <!-- CHAPTER 01: THE TRUTH -->
 <section class="truth" id="truth">
@@ -1876,21 +1888,6 @@
 
       <div class="spine-row" style="position:relative;">
         <!-- Peeker: kid celebrating at the finish line -->
-        <div class="peeker peeker-spine-end">
-          <img src="canva_mascots/peeker-finish.png" alt="" onerror="this.remove()">
-          <svg viewBox="0 0 90 110" xmlns="http://www.w3.org/2000/svg">
-            <ellipse cx="45" cy="92" rx="32" ry="18" fill="#1A1A1A"/>
-            <circle cx="45" cy="50" r="26" fill="#FBF7F0" stroke="#1A1A1A" stroke-width="2.5"/>
-            <path d="M25 32 Q35 14 45 18 Q55 14 65 32" fill="#1A1A1A"/>
-            <path d="M34 50 Q40 45 46 50" stroke="#1A1A1A" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-            <path d="M50 50 Q56 45 62 50" stroke="#1A1A1A" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-            <path d="M34 62 Q45 70 56 62" stroke="#1A1A1A" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-            <!-- Waving flag arm -->
-            <path d="M15 80 Q-2 60 8 30" stroke="#1A1A1A" stroke-width="5" fill="none" stroke-linecap="round"/>
-            <rect x="3" y="14" width="22" height="14" fill="#F08597" stroke="#1A1A1A" stroke-width="2"/>
-            <line x1="8" y1="14" x2="8" y2="34" stroke="#1A1A1A" stroke-width="2"/>
-          </svg>
-        </div>
         <div class="sp-day">SUN / DAY 07</div>
         <div class="sp-title">THE FIRST CUSTOMER</div>
         <div class="sp-desc">Most students close their first sale today. Either way, you finish with a working business, a customer list you can call by name, and a four-week growth plan.</div>
@@ -2086,7 +2083,7 @@
       <div class="method-cell">
         <div class="midx">METHOD 01 / FIND IT</div>
         <div class="mascot-slot">
-          <img class="mascot-png" src="canva_mascots/mascot-hunter.png" alt="Hunter mascot" onerror="this.remove()">
+          <img class="mascot-png method-photo" src="pexels/method-find.jpg" alt="Find your business — researching with AI" onerror="this.remove()">
           <!-- Hunter mascot: explorer with binoculars (fallback) -->
           <svg viewBox="0 0 200 160" style="width: 100%; height: 100%;">
             <!-- Body -->
@@ -2120,7 +2117,7 @@
       <div class="method-cell">
         <div class="midx">METHOD 02 / BUILD IT</div>
         <div class="mascot-slot">
-          <img class="mascot-png" src="canva_mascots/mascot-builder.png" alt="Builder mascot" onerror="this.remove()">
+          <img class="mascot-png method-photo" src="pexels/method-build.jpg" alt="Build with AI — at the laptop" onerror="this.remove()">
           <!-- Builder mascot: kid with laptop (fallback) -->
           <svg viewBox="0 0 200 160" style="width: 100%; height: 100%;">
             <!-- Body -->
@@ -2153,7 +2150,7 @@
       <div class="method-cell">
         <div class="midx">METHOD 03 / SELL IT</div>
         <div class="mascot-slot">
-          <img class="mascot-png" src="canva_mascots/mascot-seller.png" alt="Seller mascot" onerror="this.remove()">
+          <img class="mascot-png method-photo" src="pexels/method-sell.jpg" alt="Ship and sell — closing the first customer" onerror="this.remove()">
           <!-- Seller mascot: kid celebrating with money (fallback) -->
           <svg viewBox="0 0 200 160" style="width: 100%; height: 100%;">
             <!-- Body -->
@@ -2259,7 +2256,7 @@
         </div>
         <div class="founder-meta">
           <div class="founder-name">ARJUN VAIDYA</div>
-          <div class="founder-role">CO-FOUNDER / V3 VENTURES</div>
+          <div class="founder-role">INVESTOR / V3 VENTURES</div>
           <div class="founder-tags"><span>SCALED + SOLD DR VAIDYA'S</span></div>
           <p class="founder-bio">Built Dr Vaidya's, a D2C ayurveda brand, to a category leader and exited. Now backs consumer founders through V3 Ventures. Your guide on how a small thing on the internet actually becomes a real business that pays for itself.</p>
         </div>
@@ -2280,35 +2277,13 @@
         </div>
         <div class="founder-meta">
           <div class="founder-name">ABHISHEK SHAH</div>
-          <div class="founder-role">CO-FOUNDER / D2C INSIDER</div>
+          <div class="founder-role">MENTOR / D2C INSIDER</div>
           <div class="founder-tags"><span>INDIA'S LARGEST D2C COMMUNITY</span></div>
           <p class="founder-bio">Runs D2C Insider, the network behind most of India's direct-to-consumer founders. Brings the rolodex (suppliers, payment partners, growth hacks) that turns your seven-day shop into something that can actually run for years.</p>
         </div>
       </article>
     </div>
 
-    <!-- Founder section corner peeker -->
-    <div class="peeker peeker-founders-br" style="position:absolute;">
-      <img src="canva_mascots/peeker-kids.png" alt="" onerror="this.remove()">
-      <svg viewBox="0 0 120 140" xmlns="http://www.w3.org/2000/svg">
-        <!-- Kid with thumbs up holding "OUR KIDS" -->
-        <ellipse cx="60" cy="118" rx="38" ry="22" fill="#FFBA25" stroke="#1A1A1A" stroke-width="2.5"/>
-        <circle cx="60" cy="68" r="30" fill="#FBF7F0" stroke="#1A1A1A" stroke-width="2.5"/>
-        <path d="M36 50 Q48 30 60 32 Q72 30 84 50 L82 58 L38 58 Z" fill="#1A1A1A"/>
-        <circle cx="50" cy="68" r="2.5" fill="#1A1A1A"/>
-        <circle cx="70" cy="68" r="2.5" fill="#1A1A1A"/>
-        <path d="M48 82 Q60 90 72 82" stroke="#1A1A1A" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-        <!-- Sign -->
-        <rect x="14" y="78" width="42" height="22" fill="#F08597" stroke="#1A1A1A" stroke-width="2"/>
-        <text x="35" y="92" font-family="Inter" font-size="9" font-weight="900" text-anchor="middle" fill="#1A1A1A">OUR KIDS</text>
-        <path d="M30 90 Q40 100 50 95" stroke="#1A1A1A" stroke-width="4" fill="none" stroke-linecap="round"/>
-      </svg>
-    </div>
-
-    <div class="teachers-foot">
-      <div class="tf-quote">"Right now, most kids are using AI to make memes and edit images. We thought it could help them make a business instead. AI/SHIP is the room where the second thing happens."</div>
-      <div class="tf-attrib">THE AI/SHIP FOUNDERS</div>
-    </div>
   </div>
 </section>
 
@@ -2325,18 +2300,6 @@
 
     <div class="letter-block" style="position:relative;">
       <!-- Parent letter peeker — heart in hand -->
-      <div class="peeker peeker-letter-tr">
-        <img src="canva_mascots/peeker-heart.png" alt="" onerror="this.remove()">
-        <svg viewBox="0 0 90 90" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="45" cy="42" r="28" fill="#FBF7F0" stroke="#1A1A1A" stroke-width="2.5"/>
-          <path d="M22 26 Q32 8 45 12 Q58 8 68 26" fill="#1A1A1A"/>
-          <path d="M34 42 Q40 38 46 42" stroke="#1A1A1A" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-          <path d="M50 42 Q56 38 62 42" stroke="#1A1A1A" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-          <path d="M34 56 Q45 62 56 56" stroke="#1A1A1A" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-          <!-- Heart -->
-          <path d="M75 18 C70 10 60 14 65 24 C60 14 50 18 55 28 C58 35 65 38 65 38 C65 38 72 35 75 28 C80 18 80 10 75 18 Z" fill="#F08597" stroke="#1A1A1A" stroke-width="1.5"/>
-        </svg>
-      </div>
       <div class="letter-photo">
         <!-- Pexels 4308093 by Ketut Subiyanto. Drop pexels/family-laptop.jpg to override. -->
         <img class="mascot-png" src="pexels/family-laptop.jpg" alt="Parent and teen building together" onerror="this.src='https://images.pexels.com/photos/4308093/pexels-photo-4308093.jpeg?auto=compress&cs=tinysrgb&w=1000'; this.onerror=null;">
@@ -2366,7 +2329,7 @@
         <p>Sachin started AI/SHIP. He is the engineer and operator behind every tool, every workflow, every shipped product the kids in the room will touch. Ronnie came in to make sure other parents could see what he had built, and trust it. Two friends came in next. Arjun, who built and sold Dr Vaidya's. Abhishek, who runs India's largest D2C founder community.</p>
         <p>This is not a coding bootcamp. Not a summer camp. It is seven days where your child sits with capable adults and other kids their age, uses the same AI tools that real founders use, and walks out with a working shop on the internet.</p>
         <p>If their own kids are in the room, you can be reasonably sure they are not phoning it in. Reserve a seat. They will WhatsApp you the dates and answer every question before you pay a rupee.</p>
-        <div class="sig"><b>THE AI/SHIP FOUNDERS</b> / SACHIN, RONNIE, ARJUN, ABHISHEK<br>FROM PARENTS, FOR KIDS</div>
+        <div class="sig"><b>SACHIN &amp; RONNIE</b> / FROM PARENTS, FOR KIDS</div>
       </div>
     </div>
   </div>
@@ -2386,21 +2349,6 @@
 
     <div class="price-card" style="position:relative;">
       <!-- Price corner peeker -->
-      <div class="peeker peeker-price-corner">
-        <img src="canva_mascots/peeker-money.png" alt="" onerror="this.remove()">
-        <svg viewBox="0 0 90 110" xmlns="http://www.w3.org/2000/svg">
-          <ellipse cx="45" cy="92" rx="30" ry="18" fill="#1A1A1A"/>
-          <circle cx="45" cy="50" r="26" fill="#FBF7F0" stroke="#1A1A1A" stroke-width="2.5"/>
-          <path d="M25 32 Q35 14 45 18 Q55 14 65 32" fill="#1A1A1A"/>
-          <path d="M34 50 Q40 45 46 50" stroke="#1A1A1A" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-          <path d="M50 50 Q56 45 62 50" stroke="#1A1A1A" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-          <ellipse cx="45" cy="62" rx="4" ry="5" fill="#1A1A1A"/>
-          <!-- Rupee sign held up -->
-          <path d="M75 70 Q88 50 80 30" stroke="#1A1A1A" stroke-width="5" fill="none" stroke-linecap="round"/>
-          <circle cx="80" cy="28" r="12" fill="#FFBA25" stroke="#1A1A1A" stroke-width="2"/>
-          <text x="80" y="34" font-family="Inter" font-size="16" font-weight="900" text-anchor="middle" fill="#1A1A1A">₹</text>
-        </svg>
-      </div>
       <div class="ribbon">FIRST COHORT / 2026</div>
       <div class="badge">SEVEN-DAY SPRINT / ALL INCLUSIVE</div>
       <h3>AI/SHIP FIRST COHORT</h3>
@@ -2516,38 +2464,6 @@
   <div class="deva">अब तुम्हारी बारी।</div>
 
   <!-- Mascots flanking the CTA (drop canva_mascots/mascot-pointer.png + mascot-thumbs.png to override) -->
-  <div class="final-mascot-l">
-    <img class="mascot-png" src="canva_mascots/mascot-pointer.png" alt="Pointer mascot" onerror="this.remove()">
-  <svg viewBox="0 0 160 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
-    <!-- left mascot: kid pointing right (fallback) -->
-    <ellipse cx="80" cy="155" rx="42" ry="44" fill="#0A0A0A"/>
-    <circle cx="80" cy="85" r="36" fill="#FCF5EE" stroke="#0A0A0A" stroke-width="3"/>
-    <path d="M55 65 Q70 40 80 48 Q90 40 105 65 L102 75 L58 75 Z" fill="#0A0A0A"/>
-    <path d="M68 88 Q74 82 80 88" stroke="#0A0A0A" stroke-width="3" fill="none" stroke-linecap="round"/>
-    <path d="M88 88 Q94 82 100 88" stroke="#0A0A0A" stroke-width="3" fill="none" stroke-linecap="round"/>
-    <path d="M70 105 Q80 112 90 105" stroke="#0A0A0A" stroke-width="3" fill="none" stroke-linecap="round"/>
-    <!-- pointing arm -->
-    <path d="M120 140 Q150 130 158 110" stroke="#0A0A0A" stroke-width="7" fill="none" stroke-linecap="round"/>
-    <circle cx="158" cy="110" r="6" fill="#FCF5EE" stroke="#0A0A0A" stroke-width="2"/>
-  </svg>
-  </div>
-
-  <div class="final-mascot-r">
-    <img class="mascot-png" src="canva_mascots/mascot-thumbs.png" alt="Thumbs-up mascot" onerror="this.remove()">
-  <svg viewBox="0 0 160 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
-    <!-- right mascot: kid with thumbs up (fallback) -->
-    <ellipse cx="80" cy="155" rx="42" ry="44" fill="#0A0A0A"/>
-    <circle cx="80" cy="85" r="36" fill="#FCF5EE" stroke="#0A0A0A" stroke-width="3"/>
-    <path d="M55 65 Q70 42 80 50 Q92 42 105 65" fill="#0A0A0A"/>
-    <circle cx="68" cy="85" r="3" fill="#0A0A0A"/>
-    <circle cx="92" cy="85" r="3" fill="#0A0A0A"/>
-    <path d="M65 100 Q80 112 95 100" stroke="#0A0A0A" stroke-width="3" fill="none" stroke-linecap="round"/>
-    <!-- thumbs up arm -->
-    <path d="M40 140 Q10 120 8 95" stroke="#0A0A0A" stroke-width="7" fill="none" stroke-linecap="round"/>
-    <circle cx="8" cy="92" r="9" fill="#FCF5EE" stroke="#0A0A0A" stroke-width="2.5"/>
-    <line x1="8" y1="84" x2="8" y2="76" stroke="#0A0A0A" stroke-width="3" stroke-linecap="round"/>
-  </svg>
-  </div>
 </div>
 
 <div class="color-bars">
