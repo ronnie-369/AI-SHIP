@@ -2605,6 +2605,346 @@
 
   // Soft seat counter on lead form submit (mock)
   // (actual integration: replace alert with POST to your CRM endpoint)
+
+  // =========================================================
+  // CONTACT CAPT. HTTPS — modal chat window
+  // Wired to every [data-nexocircle-agent="pending"] trigger
+  // =========================================================
+  (function setupContactModal() {
+    const modal = document.getElementById('contact-modal');
+    if (!modal) return;
+
+    const triggers = document.querySelectorAll('[data-nexocircle-agent="pending"]');
+    const closeBtn = modal.querySelector('.contact-close');
+    const form = modal.querySelector('#contact-form');
+    const successView = modal.querySelector('.contact-success');
+    const formView = modal.querySelector('.contact-form-view');
+
+    function open(e) {
+      if (e) e.preventDefault();
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      setTimeout(() => modal.querySelector('input[name="name"]').focus(), 400);
+    }
+    function close() {
+      modal.classList.remove('open');
+      document.body.style.overflow = '';
+      // Reset to form view for next open
+      setTimeout(() => {
+        formView.style.display = '';
+        successView.style.display = 'none';
+        form.reset();
+      }, 400);
+    }
+    triggers.forEach(t => t.addEventListener('click', open));
+    closeBtn.addEventListener('click', close);
+    modal.querySelector('.contact-backdrop').addEventListener('click', close);
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('open')) close();
+    });
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      // Swap to success view (animation handled in CSS)
+      formView.style.display = 'none';
+      successView.style.display = 'flex';
+      // Auto-close after 4s
+      setTimeout(close, 4000);
+      // TODO: when the actual nexocircle agent is wired,
+      // POST form data to the agent endpoint here.
+    });
+  })();
+</script>
+
+<!-- ========================================================= -->
+<!-- CONTACT CAPT. HTTPS MODAL                                   -->
+<!-- Triggered by any [data-nexocircle-agent="pending"] link    -->
+<!-- ========================================================= -->
+<style>
+  #contact-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.32s ease;
+  }
+  #contact-modal.open {
+    pointer-events: auto;
+    opacity: 1;
+  }
+  .contact-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(10, 10, 10, 0.62);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+  }
+  .contact-card {
+    position: relative;
+    background: var(--paper);
+    border: 1px solid var(--ink);
+    border-radius: 20px;
+    width: min(680px, 92vw);
+    max-height: 92vh;
+    overflow: hidden;
+    box-shadow: 0 32px 80px rgba(0,0,0,0.4);
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    transform: translateY(40px) scale(0.96);
+    transition: transform 0.42s cubic-bezier(0.2, 0.9, 0.3, 1.2);
+  }
+  #contact-modal.open .contact-card { transform: translateY(0) scale(1); }
+
+  /* LEFT — animated astronaut zone */
+  .contact-astro-zone {
+    background: var(--cream);
+    position: relative;
+    overflow: hidden;
+    border-right: 1px solid var(--rule);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 24px 16px 24px;
+    min-height: 320px;
+  }
+  .contact-astro-scooter {
+    width: 220px;
+    height: auto;
+    transform: translateX(420px) rotate(6deg);
+    opacity: 0;
+    z-index: 2;
+    filter: drop-shadow(0 14px 24px rgba(0,0,0,0.18));
+  }
+  #contact-modal.open .contact-astro-scooter {
+    animation: zeroGFloatIn 1.2s cubic-bezier(0.2, 0.8, 0.25, 1) 0.18s forwards,
+               idleBob 4s ease-in-out 1.5s infinite;
+  }
+  @keyframes zeroGFloatIn {
+    0%   { transform: translateX(420px) rotate(6deg); opacity: 0; }
+    60%  { transform: translateX(-12px) rotate(-2deg); opacity: 1; }
+    100% { transform: translateX(0) rotate(0); opacity: 1; }
+  }
+  @keyframes idleBob {
+    0%, 100% { transform: translateY(0) rotate(-2deg); }
+    50%      { transform: translateY(-10px) rotate(2deg); }
+  }
+  .contact-astro-flag {
+    width: 220px;
+    height: auto;
+    position: absolute;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%) scale(0.6);
+    opacity: 0;
+    transition: opacity 0.4s ease, transform 0.55s cubic-bezier(0.2, 0.85, 0.3, 1.3);
+    filter: drop-shadow(0 14px 24px rgba(0,0,0,0.18));
+  }
+  .contact-success-active .contact-astro-scooter { display: none; }
+  .contact-success-active .contact-astro-flag {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+  }
+
+  /* Speech bubble cue */
+  .contact-bubble {
+    position: absolute;
+    top: 20px;
+    right: 12px;
+    background: var(--ink);
+    color: var(--paper);
+    padding: 8px 12px;
+    border-radius: 16px;
+    border-bottom-right-radius: 4px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: 700;
+    opacity: 0;
+    transform: translateY(-6px);
+    transition: opacity 0.4s ease 0.9s, transform 0.4s ease 0.9s;
+  }
+  #contact-modal.open .contact-bubble { opacity: 1; transform: translateY(0); }
+
+  /* RIGHT — form / success */
+  .contact-body {
+    padding: 28px 28px 24px;
+    overflow-y: auto;
+  }
+  .contact-close {
+    position: absolute;
+    top: 12px;
+    right: 14px;
+    background: transparent;
+    border: none;
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 20px;
+    color: var(--muted);
+    display: flex; align-items: center; justify-content: center;
+    z-index: 5;
+  }
+  .contact-close:hover { color: var(--ink); background: var(--cream); }
+  .contact-form-view h3 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 1.2;
+    letter-spacing: -0.4px;
+    margin-bottom: 6px;
+    color: var(--ink);
+  }
+  .contact-form-view .sub {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.45;
+    margin-bottom: 18px;
+  }
+  .contact-form-view label {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 12px;
+    margin-bottom: 4px;
+  }
+  .contact-form-view input,
+  .contact-form-view textarea {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid var(--rule);
+    padding: 8px 0;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    background: transparent;
+    color: var(--ink);
+    outline: none;
+    resize: none;
+  }
+  .contact-form-view input:focus,
+  .contact-form-view textarea:focus { border-bottom-color: var(--coral); }
+  .contact-form-view button[type="submit"] {
+    width: 100%;
+    background: var(--ink);
+    color: var(--paper);
+    border: none;
+    padding: 14px;
+    margin-top: 20px;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  .contact-form-view button[type="submit"]:hover { background: var(--coral-deep); }
+
+  /* Success state */
+  .contact-success {
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    height: 100%;
+    min-height: 280px;
+  }
+  .contact-success h3 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+    letter-spacing: -0.4px;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+  .contact-success p {
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+  .contact-success .coral-line {
+    color: var(--coral-deep);
+    font-weight: 700;
+    margin-top: 12px;
+  }
+
+  @media (max-width: 640px) {
+    .contact-card { grid-template-columns: 1fr; max-height: 96vh; }
+    .contact-astro-zone { min-height: 200px; padding: 16px; border-right: none; border-bottom: 1px solid var(--rule); }
+    .contact-astro-scooter, .contact-astro-flag { width: 160px; }
+    .contact-body { padding: 20px; }
+  }
+</style>
+
+<div id="contact-modal" role="dialog" aria-modal="true" aria-labelledby="contact-title">
+  <div class="contact-backdrop"></div>
+  <div class="contact-card">
+    <button class="contact-close" aria-label="Close">&times;</button>
+
+    <!-- LEFT: animated Capt. HTTPS -->
+    <div class="contact-astro-zone">
+      <div class="contact-bubble">Drop your details ↘</div>
+      <img class="contact-astro-scooter"
+           src="canva_mascots/capt-https-sitting-waving.png"
+           alt="Capt. HTTPS waiting for your message">
+      <img class="contact-astro-flag"
+           src="canva_mascots/capt-https-flag-planting.png"
+           alt="Capt. HTTPS — mission received, flag planted">
+    </div>
+
+    <!-- RIGHT: form / success -->
+    <div class="contact-body">
+      <div class="contact-form-view">
+        <h3 id="contact-title">Talk to Capt. HTTPS.</h3>
+        <p class="sub">Drop your details. We will WhatsApp you within 30 minutes.</p>
+
+        <form id="contact-form">
+          <label>Your name</label>
+          <input type="text" name="name" required autocomplete="name" placeholder="Aarav Sharma">
+
+          <label>WhatsApp number</label>
+          <input type="tel" name="phone" required autocomplete="tel" placeholder="+91 98XX XX XX XX">
+
+          <label>City</label>
+          <input type="text" name="city" required autocomplete="address-level2" placeholder="Bangalore">
+
+          <label>What do you want to talk about?</label>
+          <textarea name="topic" rows="2" placeholder="Enrolling my kid / general question / something else"></textarea>
+
+          <button type="submit">CALL ME BACK →</button>
+        </form>
+      </div>
+
+      <div class="contact-success">
+        <h3>Mission received.</h3>
+        <p>Capt. HTTPS got your message. We will WhatsApp you within 30 minutes from a Bangalore number.</p>
+        <p class="coral-line">Hold tight. ✦</p>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  // Toggle success animation class on success view show
+  (function watchContactSuccess() {
+    const modal = document.getElementById('contact-modal');
+    if (!modal) return;
+    const successView = modal.querySelector('.contact-success');
+    if (!successView) return;
+    new MutationObserver(() => {
+      if (successView.style.display === 'flex') {
+        modal.classList.add('contact-success-active');
+      } else {
+        modal.classList.remove('contact-success-active');
+      }
+    }).observe(successView, { attributes: true, attributeFilter: ['style'] });
+  })();
 </script>
 
 </body>
