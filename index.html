@@ -2688,54 +2688,9 @@
     return String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
   }
 
-  // =========================================================
-  // CONTACT CAPT. HTTPS — modal chat window
-  // Wired to every [data-nexocircle-agent="pending"] trigger
-  // =========================================================
-  (function setupContactModal() {
-    const modal = document.getElementById('contact-modal');
-    if (!modal) return;
-
-    const triggers = document.querySelectorAll('[data-nexocircle-agent="pending"]');
-    const closeBtn = modal.querySelector('.contact-close');
-    const form = modal.querySelector('#contact-form');
-    const successView = modal.querySelector('.contact-success');
-    const formView = modal.querySelector('.contact-form-view');
-
-    function open(e) {
-      if (e) e.preventDefault();
-      modal.classList.add('open');
-      document.body.style.overflow = 'hidden';
-      setTimeout(() => modal.querySelector('input[name="name"]').focus(), 400);
-    }
-    function close() {
-      modal.classList.remove('open');
-      document.body.style.overflow = '';
-      // Reset to form view for next open
-      setTimeout(() => {
-        formView.style.display = '';
-        successView.style.display = 'none';
-        form.reset();
-      }, 400);
-    }
-    triggers.forEach(t => t.addEventListener('click', open));
-    closeBtn.addEventListener('click', close);
-    modal.querySelector('.contact-backdrop').addEventListener('click', close);
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && modal.classList.contains('open')) close();
-    });
-
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      // Swap to success view (animation handled in CSS)
-      formView.style.display = 'none';
-      successView.style.display = 'flex';
-      // Auto-close after 4s
-      setTimeout(close, 4000);
-      // TODO: when the actual nexocircle agent is wired,
-      // POST form data to the agent endpoint here.
-    });
-  })();
+  // Contact modal setup is deferred to after the DOM is parsed
+  // (the modal HTML lives below this script).
+  // See the inline script directly after the modal markup.
 </script>
 
 <!-- ========================================================= -->
@@ -2974,8 +2929,8 @@
     <div class="contact-astro-zone">
       <div class="contact-bubble">Drop your details ↘</div>
       <img class="contact-astro-scooter"
-           src="canva_mascots/capt-https-sitting-waving.png"
-           alt="Capt. HTTPS waiting for your message">
+           src="canva_mascots/capt-https-scooter-pose.png"
+           alt="Capt. HTTPS arriving on his scooter">
       <img class="contact-astro-flag"
            src="canva_mascots/capt-https-flag-planting.png"
            alt="Capt. HTTPS — mission received, flag planted">
@@ -2984,48 +2939,119 @@
     <!-- RIGHT: form / success -->
     <div class="contact-body">
       <div class="contact-form-view">
-        <h3 id="contact-title">Talk to Capt. HTTPS.</h3>
-        <p class="sub">Drop your details. We will WhatsApp you within 30 minutes.</p>
+        <h3 id="contact-title">Talk to us.</h3>
+        <p class="sub">Drop a note. Theresa will read it and write back.</p>
 
-        <form id="contact-form">
+        <form id="contact-form" action="https://formsubmit.co/ajax/theresa.ronnie@bombaybreed.com" method="POST">
+          <!-- FormSubmit hidden controls -->
+          <input type="hidden" name="_subject" value="AI/SHIP — new message from the website">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="text" name="_honey" style="display:none;">
+
           <label>Your name</label>
           <input type="text" name="name" required autocomplete="name" placeholder="Aarav Sharma">
 
-          <label>WhatsApp number</label>
-          <input type="tel" name="phone" required autocomplete="tel" placeholder="+91 98XX XX XX XX">
+          <label>Email</label>
+          <input type="email" name="email" required autocomplete="email" placeholder="you@example.com">
 
-          <label>City</label>
-          <input type="text" name="city" required autocomplete="address-level2" placeholder="Bangalore">
+          <label>Mobile number</label>
+          <input type="tel" name="mobile" required autocomplete="tel" placeholder="+91 98XX XX XX XX">
 
-          <label>What do you want to talk about?</label>
-          <textarea name="topic" rows="2" placeholder="Enrolling my kid / general question / something else"></textarea>
+          <label>What's on your mind?</label>
+          <textarea name="message" rows="3" required placeholder="Anything. Questions about the programme, feedback on the website, something else."></textarea>
 
-          <button type="submit">CALL ME BACK →</button>
+          <button type="submit">SEND IT →</button>
         </form>
       </div>
 
       <div class="contact-success">
-        <h3>Mission received.</h3>
-        <p>Capt. HTTPS got your message. We will WhatsApp you within 30 minutes from a Bangalore number.</p>
-        <p class="coral-line">Hold tight. ✦</p>
+        <h3>Got it.</h3>
+        <p>Your note is on its way to Theresa. She reads every one of them and will write back from her own inbox within a day.</p>
+        <p class="coral-line">Thanks for taking the time. ✦</p>
       </div>
     </div>
   </div>
 </div>
 <script>
-  // Toggle success animation class on success view show
-  (function watchContactSuccess() {
+  // =========================================================
+  // CONTACT CAPT. HTTPS MODAL — wire-up
+  // Runs AFTER the modal HTML is in the DOM (this script sits below it).
+  // Triggered by every [data-nexocircle-agent="pending"] link.
+  // Sends mail to theresa.ronnie@bombaybreed.com via FormSubmit.
+  // =========================================================
+  (function setupContactModal() {
     const modal = document.getElementById('contact-modal');
     if (!modal) return;
+
+    const triggers = document.querySelectorAll('[data-nexocircle-agent="pending"]');
+    const closeBtn = modal.querySelector('.contact-close');
+    const form = modal.querySelector('#contact-form');
     const successView = modal.querySelector('.contact-success');
-    if (!successView) return;
-    new MutationObserver(() => {
-      if (successView.style.display === 'flex') {
+    const formView = modal.querySelector('.contact-form-view');
+    const submitBtn = form.querySelector('button[type="submit"]');
+
+    function open(e) {
+      if (e) e.preventDefault();
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      setTimeout(() => {
+        const firstField = modal.querySelector('input[name="name"]');
+        if (firstField) firstField.focus();
+      }, 420);
+    }
+    function close() {
+      modal.classList.remove('open');
+      modal.classList.remove('contact-success-active');
+      document.body.style.overflow = '';
+      setTimeout(() => {
+        formView.style.display = '';
+        successView.style.display = 'none';
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'SEND IT →';
+        form.reset();
+      }, 420);
+    }
+    triggers.forEach(t => t.addEventListener('click', open));
+    closeBtn.addEventListener('click', close);
+    modal.querySelector('.contact-backdrop').addEventListener('click', close);
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('open')) close();
+    });
+
+    // AJAX submit to FormSubmit — emails Theresa, shows in-page confirmation
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'SENDING…';
+
+      const data = new FormData(form);
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: data,
+          headers: { 'Accept': 'application/json' }
+        });
+        if (!res.ok) throw new Error('FormSubmit returned ' + res.status);
+        // Success — swap to flag-planting view
+        formView.style.display = 'none';
+        successView.style.display = 'flex';
         modal.classList.add('contact-success-active');
-      } else {
-        modal.classList.remove('contact-success-active');
+        // Keep the success view open until user closes (no auto-close)
+      } catch (err) {
+        // Fallback if FormSubmit fails: use a mailto: as a graceful fallback
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'SEND IT →';
+        const name = data.get('name') || '';
+        const email = data.get('email') || '';
+        const mobile = data.get('mobile') || '';
+        const msg = data.get('message') || '';
+        const body = encodeURIComponent(
+          `Name: ${name}\nEmail: ${email}\nMobile: ${mobile}\n\n${msg}`
+        );
+        window.location.href = `mailto:theresa.ronnie@bombaybreed.com?subject=AI/SHIP%20website%20message&body=${body}`;
       }
-    }).observe(successView, { attributes: true, attributeFilter: ['style'] });
+    });
   })();
 </script>
 
