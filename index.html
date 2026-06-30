@@ -42,10 +42,9 @@
   .deva { font-family: 'Noto Sans Devanagari', sans-serif; }
   img, svg { max-width: 100%; display: block; }
 
-  /* ===== CATALOG HEADER BAR ===== */
+  /* ===== CATALOG HEADER BAR (scrolls naturally, no longer sticky) ===== */
   .runner {
-    position: sticky;
-    top: 0;
+    position: relative;
     z-index: 100;
     background: var(--cream);
     color: var(--ink);
@@ -75,12 +74,11 @@
   }
   .runner .cta-mini:hover { background: var(--coral-deep); }
 
-  /* ===== MAIN NAV ===== */
+  /* ===== MAIN NAV (scrolls naturally with the page) ===== */
   nav.main {
     background: var(--paper);
     border-bottom: 1px solid var(--rule);
-    position: sticky;
-    top: 31px;
+    position: relative;
     z-index: 90;
   }
   .nav-inner {
@@ -1597,8 +1595,139 @@
   @media (max-width: 640px) {
     .stores-grid { grid-template-columns: 1fr; }
     .store-card { border-right: none; }
-    section.chapter, .truth, .price-zone, .stores-cream, .final { padding-left: 20px; padding-right: 20px; }
-    .nav-inner { padding: 14px 20px; }
+    section.chapter, .truth, .price-zone, .stores-cream, .final { padding-left: 20px; padding-right: 20px; padding-top: 56px; padding-bottom: 56px; }
+    .nav-inner { padding: 0 16px; min-height: auto; }
+
+    /* iPhone-targeted fixes (375-430px viewports) */
+
+    /* Nav: shrink the 288px logo so it doesn't dominate the mobile viewport */
+    .nav-inner > .wordmark img { height: 96px !important; width: 96px !important; margin: 8px 0; }
+    .nav-cta { padding: 10px 14px; font-size: 10px; letter-spacing: 1px; }
+
+    /* Top runner: tighter padding, smaller text */
+    .runner { padding: 6px 16px; font-size: 9.5px; letter-spacing: 1.2px; }
+    .runner-r { gap: 10px; }
+    .runner-l { gap: 10px; }
+    .runner-l span:nth-child(n+2) { display: none; }
+    .runner-r span { display: none; }
+
+    /* Hero: cap the gigantic wordmark + headline so they fit a 375px viewport */
+    .hero { padding: 32px 20px 56px; }
+    .wordmark-hero { font-size: 64px !important; letter-spacing: -2px !important; line-height: 0.9 !important; margin-bottom: 20px; }
+    .hero-h { font-size: 30px !important; line-height: 1.05 !important; letter-spacing: -0.8px !important; margin-bottom: 18px; }
+    .hero-h .subsub { font-size: 13px !important; margin-top: 12px; }
+    .hero-sub { font-size: 15.5px; line-height: 1.45; margin-bottom: 24px; }
+    .hero-meta { font-size: 10px; gap: 12px 18px; }
+    .chapter-mark { font-size: 10px; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+    .chapter-mark .rule { max-width: 60px; }
+    .lead-card { padding: 24px 18px; }
+    .lead-card h3 { font-size: 22px; }
+
+    /* Hero photo sticker — was 320px, drop to 110px on phone */
+    .hero-sticker { top: -14px !important; right: -10px !important; }
+    .badge-xl { width: 110px !important; height: 110px !important; }
+    .badge-lg { width: 80px !important; height: 80px !important; }
+    .hero-photo { aspect-ratio: 4/5; }
+    .hero-photo .caption { font-size: 9px; padding: 4px 8px; }
+
+    /* Stats grid: 1 column on phone */
+    .stat-index { padding: 48px 20px; }
+    .stat-grid { grid-template-columns: 1fr; border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); }
+    .stat-cell { border-right: none; border-bottom: 1px solid var(--rule); padding: 24px 0; }
+    .stat-cell:last-child { border-bottom: none; }
+    .stat-cell .num { font-size: 36px; }
+
+    /* Captain section */
+    .captain-section { padding: 56px 20px !important; }
+    .captain-cutout { max-width: 200px !important; }
+
+    /* Truth chapter — its h was clamp(48px, 7vw, 104px), too big at 48 */
+    .truth { padding: 56px 20px; }
+    .truth .truth-h { font-size: 32px !important; letter-spacing: -1px !important; line-height: 1.05 !important; margin-bottom: 28px; }
+
+    /* Chapter titles tighter on mobile */
+    h2.ch-title { font-size: 30px !important; letter-spacing: -0.6px !important; line-height: 1.1 !important; }
+    h2.ch-title .aside { white-space: normal !important; font-size: 14px !important; }
+    .ch-num { font-size: 40px !important; }
+    .ch-deck { font-size: 15.5px; margin-top: 16px; }
+    .ch-head { margin-bottom: 32px; }
+
+    /* 7-day catalog spine */
+    .spine-row { grid-template-columns: 1fr; padding: 24px 0; gap: 10px; }
+    .spine-row .sp-day { font-size: 11px; }
+    .spine-row .sp-title { font-size: 22px; }
+    .spine-row .sp-desc { font-size: 14px; }
+    .spine-row .sp-num { text-align: left; font-size: 36px; margin-top: 4px; }
+    .spine-row .sp-out { padding: 12px 14px; }
+
+    /* Store cards: full width, smaller */
+    .stores-grid { gap: 40px 0; margin-top: 16px; }
+    .store-meta h4 { font-size: 20px; }
+
+    /* Method tiles full-width photos */
+    .method-cell { padding: 28px 20px; }
+    .method-cell .mascot-slot { height: 220px; }
+    .method-cell h3 { font-size: 22px; }
+    .method-cell p { font-size: 14.5px; }
+
+    /* Founder cards stack image above bio on phone */
+    .founder { grid-template-columns: 1fr; gap: 16px; padding: 20px; }
+    .founder-photo { max-width: 200px; aspect-ratio: 1/1; }
+    .founder-name { font-size: 20px; }
+    .founder-bio { font-size: 14.5px; }
+
+    /* Founders quote callout */
+    blockquote { font-size: 22px !important; line-height: 1.25 !important; }
+
+    /* Parent letter */
+    .letter-block { padding: 24px; gap: 24px; }
+    .letter-photo { max-width: 200px; margin: 0 auto; }
+    .letter-body h3 { font-size: 24px; margin-bottom: 16px; }
+    .letter-body p { font-size: 15px; }
+
+    /* Pricing */
+    .price-zone { padding: 56px 20px; }
+    .price-card { padding: 36px 24px; max-width: 100%; }
+    .price-card h3 { font-size: 22px; }
+    .price-card .price .amt { font-size: 72px !important; letter-spacing: -2px; }
+    .price-card .price .cur { font-size: 22px; margin-top: 12px; }
+    .includes li { font-size: 14px; padding: 10px 0; }
+
+    /* FAQ — single-column on mobile */
+    details.faq { padding: 18px 0; }
+    details.faq summary { grid-template-columns: 40px 1fr 28px; gap: 12px; }
+    details.faq .fnum { font-size: 10px; }
+    details.faq .fq { font-size: 16px; line-height: 1.2; }
+    details.faq .fmark { font-size: 24px; }
+    details.faq .fa { margin-left: 0 !important; margin-top: 14px; }
+    details.faq .fa .truth { font-size: 14.5px; }
+    details.faq .fa .myth { font-size: 13.5px; padding: 12px 14px; }
+
+    /* Final CTA — that headline is enormous */
+    .final { padding: 56px 20px; }
+    .final h2 { font-size: 36px !important; letter-spacing: -1px !important; line-height: 1.05; margin-bottom: 20px; }
+    .final p { font-size: 15.5px; margin-bottom: 24px; }
+    .final .final-cta { padding: 16px 28px; font-size: 13px; letter-spacing: 1px; }
+    .final .deva { font-size: 18px; margin-top: 20px; }
+
+    /* Footer */
+    footer { padding: 48px 20px 24px; padding-bottom: 100px; /* room for sticky mobile CTA */ }
+    .foot-grid { grid-template-columns: 1fr; gap: 28px; padding-bottom: 28px; }
+    .foot-brand .wordmark { font-size: 28px; }
+    .foot-brand p { font-size: 14px; }
+    .foot-mascot-stamp { width: 100px !important; height: 100px !important; margin-top: 16px; }
+    .foot-bottom { flex-direction: column; gap: 8px; padding-top: 16px; }
+
+    /* Mascot bobbing animation — gentler on phone (less is more) */
+    .captain-cutout { animation-duration: 6s; }
+  }
+
+  /* Very small phones (iPhone SE / 5.5", 320-360px) */
+  @media (max-width: 380px) {
+    .wordmark-hero { font-size: 52px !important; }
+    .hero-h { font-size: 24px !important; }
+    .nav-inner > .wordmark img { height: 72px !important; width: 72px !important; }
+    .final h2 { font-size: 30px !important; }
   }
 </style>
 </head>
@@ -2091,7 +2220,7 @@
       <div class="ch-num sun">04</div>
       <div>
         <div class="ch-mini"><b>04</b> / THE METHOD</div>
-        <h2 class="ch-title">When you are done with us, you will have <em>your own shop</em>. <em>Your own tribe of builders</em>.<span class="aside">Did we mention? A certificate of completion from V3 Ventures.</span></h2>
+        <h2 class="ch-title">When you are done with us, you will have <em>your own shop</em>. <em>Your own tribe of builders</em>.</h2>
       </div>
     </div>
 
@@ -2211,7 +2340,7 @@
       <div>
         <div class="ch-mini"><b>05</b> / THE FOLK IN THE ROOM</div>
         <h2 class="ch-title">Who is teaching you. <em>And why we are doing this.</em></h2>
-        <p class="ch-deck">Sachin started it. Theresa unlocked it. Arjun invests in it. Abhishek mentors it. Two of us have 14-year-olds of our own. We built this for them first, because we could not find anyone else doing it well. Now we are inviting you and your kid in too.</p>
+        <p class="ch-deck">Sachin started it. Theresa unlocked it. Both have 14-year-olds of their own. They built this for their kids first, because they could not find anyone else doing it well. Now they are inviting you and your kid in too.</p>
       </div>
     </div>
 
@@ -2258,47 +2387,6 @@
         </div>
       </article>
 
-      <article class="founder" style="position:relative;">
-        <div class="founder-photo">
-          <img src="founders/arjun-vaidya.jpg" alt="Arjun Vaidya" onerror="this.remove()">
-          <svg viewBox="0 0 100 130" xmlns="http://www.w3.org/2000/svg">
-            <rect width="100" height="130" fill="#FFEDB8"/>
-            <circle cx="50" cy="55" r="24" fill="#FBF7F0" stroke="#1A1A1A" stroke-width="2"/>
-            <path d="M28 42 Q42 26 50 28 Q58 26 72 42 L70 48 L30 48 Z" fill="#1A1A1A"/>
-            <circle cx="42" cy="56" r="2.5" fill="#1A1A1A"/>
-            <circle cx="58" cy="56" r="2.5" fill="#1A1A1A"/>
-            <path d="M44 68 Q50 71 56 68" stroke="#1A1A1A" stroke-width="2" fill="none" stroke-linecap="round"/>
-            <rect x="30" y="80" width="40" height="50" fill="#1A1A1A"/>
-          </svg>
-        </div>
-        <div class="founder-meta">
-          <div class="founder-name">ARJUN VAIDYA</div>
-          <div class="founder-role">INVESTOR / V3 VENTURES</div>
-          <div class="founder-tags"><span>SCALED + SOLD DR VAIDYA'S</span></div>
-          <p class="founder-bio">Built Dr Vaidya's, a D2C ayurveda brand, to a category leader and exited. Now backs consumer founders through V3 Ventures. Your guide on how a small thing on the internet actually becomes a real business that pays for itself.</p>
-        </div>
-      </article>
-
-      <article class="founder" style="position:relative;">
-        <div class="founder-photo">
-          <img src="founders/abhishek-shah.jpg" alt="Abhishek Shah" onerror="this.remove()">
-          <svg viewBox="0 0 100 130" xmlns="http://www.w3.org/2000/svg">
-            <rect width="100" height="130" fill="#FCE3E8"/>
-            <circle cx="50" cy="55" r="24" fill="#FBF7F0" stroke="#1A1A1A" stroke-width="2"/>
-            <path d="M30 44 Q40 30 50 30 Q60 30 70 44 L68 50 L32 50 Z" fill="#1A1A1A"/>
-            <circle cx="42" cy="56" r="2.5" fill="#1A1A1A"/>
-            <circle cx="58" cy="56" r="2.5" fill="#1A1A1A"/>
-            <path d="M44 68 Q50 71 56 68" stroke="#1A1A1A" stroke-width="2" fill="none" stroke-linecap="round"/>
-            <rect x="30" y="80" width="40" height="50" fill="#1A1A1A"/>
-          </svg>
-        </div>
-        <div class="founder-meta">
-          <div class="founder-name">ABHISHEK SHAH</div>
-          <div class="founder-role">MENTOR / D2C INSIDER</div>
-          <div class="founder-tags"><span>INDIA'S LARGEST D2C COMMUNITY</span></div>
-          <p class="founder-bio">Runs D2C Insider, the network behind most of India's direct-to-consumer founders. Brings the rolodex (suppliers, payment partners, growth hacks) that turns your seven-day shop into something that can actually run for years.</p>
-        </div>
-      </article>
     </div>
 
   </div>
@@ -2343,7 +2431,7 @@
       <div class="letter-body">
         <h3>The founders built this for <span class="pk">their own kids first.</span></h3>
         <p>Sachin and Ronnie both have 14-year-olds at home. The conversation in their kitchens was the same one happening in yours: <strong>what to do with the summer, what is actually worth learning, why everything available costs so much and teaches so little.</strong></p>
-        <p>Sachin started AI/SHIP. He is the engineer and operator behind every tool, every workflow, every shipped product the kids in the room will touch. Ronnie came in as co-founder to make sure other parents could see what he had built, and trust it. Two more people stood behind it. Arjun Vaidya, who built and sold Dr Vaidya's, invested in it. Abhishek Shah, who runs India's largest D2C founder community, mentors it.</p>
+        <p>Sachin started AI/SHIP. He is the engineer and operator behind every tool, every workflow, every shipped product the kids in the room will touch. Ronnie came in as co-founder to make sure other parents could see what he had built, and trust it.</p>
         <p>This is not a coding bootcamp. Not a summer camp. It is seven days where your child sits with capable adults and other kids their age, uses the same AI tools that real founders use, and walks out with a working shop on the internet.</p>
         <p>If their own kids are in the room, you can be reasonably sure they are not phoning it in. Reserve a seat. They will WhatsApp you the dates and answer every question before you pay a rupee.</p>
         <div class="sig"><b>SACHIN &amp; RONNIE</b> / FROM PARENTS, FOR KIDS</div>
@@ -2466,7 +2554,7 @@
           <div class="fmark">+</div>
         </summary>
         <div class="fa">
-          <div class="truth"><b>Honest answer.</b> You should not trust us yet. Trust the four people running it. Theresa and Sachin are putting their own 14-year-olds in the room. Arjun has built and exited a consumer brand. Abhishek runs India's largest D2C founder community. None of us would attach our names to a thing we did not believe in. We are also small on purpose. First cohort is capped at 24 kids so we can pay attention.</div>
+          <div class="truth"><b>Honest answer.</b> You should not trust us yet. Trust the two people running it. Theresa and Sachin are putting their own 14-year-olds in the room. Neither of us would attach our names to a thing we did not believe in. We are also small on purpose. First cohort is capped at 24 kids so we can pay attention.</div>
         </div>
       </details>
     </div>
